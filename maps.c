@@ -31,7 +31,7 @@ int	nameformat(char *map)
 	i = 0;
 	while (i <= 3)
 	{
-		if(map[strlen(map) -1 -i] == format[strlen(format)-1-i])
+		if(map[ft_strlen(map) -1 -i] == format[ft_strlen(format)-1-i])
             i++;
         else
 			return (-1);

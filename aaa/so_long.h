@@ -1,5 +1,5 @@
-#include "gnl/get_next_line.h"
-#include "printf/ft_printf.h"
+#include "../gnl/get_next_line.h"
+#include "../printf/ft_printf.h"
 #include <stdio.h>
 
 char    **mapchecker(char *map);

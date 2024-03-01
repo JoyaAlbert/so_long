@@ -7,3 +7,6 @@ int	    matrixtam(int fd);
 char    **matrix(int width,int length, char *aux, int fd);
 char    **fillmatrix(char **map, int fd);
 int     nameformat(char *map);
+int		elementCounter(char **map, int length, int width, char element);
+int		elementchecker(char **map, int length, int width);
+int		solvableCheck(char	**map, int length, int width);

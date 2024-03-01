@@ -8,5 +8,5 @@ int main(int argc, char *argv[])
 	map = mapchecker(map_name);
 	for (int i = 0; i< 12; i++)
 		ft_printf("%s", map[i]);
-    
+    return 0;
 }

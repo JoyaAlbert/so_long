@@ -1,5 +1,6 @@
 #include "so_long.h"
 
+
 char	**mapchecker(char	*map_name)
 {
 	char	*aux;
@@ -18,7 +19,15 @@ char	**mapchecker(char	*map_name)
 	close(fd);
 	fd = open(map_name, O_RDONLY);
 	map = fillmatrix(map,fd);
+	if (map == NULL)
+		return (NULL);
 	close(fd);
+	if (solvableCheck(map, length, ft_strlen(aux) - 2) == -1)
+	{
+		free(aux);
+		return (NULL);
+	}
+	free(aux);
 	return (map);
 }
 
@@ -37,4 +46,28 @@ int	nameformat(char *map)
 			return (-1);
 	}
 	return 1;
+}
+
+int		solvableCheck(char	**map, int length, int width)
+{
+	int i;
+
+	i = 0;
+	while (i < length)
+	{
+		if (map[i][0] != '1' || map[i][width] != '1')
+			return (-1);
+		i++;
+	}
+	i = 0;	
+	while (i <  width)
+	{
+		if(map[0][i] != '1' || map[length -1][i] != '1')
+			return (-1);
+		i++;
+	}
+	if (elementchecker(map, length, width) == -1)
+		return (-1);
+		
+	return 0;
 }

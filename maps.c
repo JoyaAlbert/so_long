@@ -14,17 +14,17 @@ char	**mapchecker(char	*map_name)
 	fd = open(map_name, O_RDONLY);
 	aux = get_next_line(fd);
 	width = ft_strlen(aux);
-	ft_printf("%d", length);
+	ft_printf("%d\n", length);
 	map = matrix(width, length);
 	close (fd);
-	map = fillmatrix(map, map_name);
+	map = fillmatrix(map, map_name, length);
 	if (map == NULL)
 		return (NULL);
-	if (solvableCheck(map, length, width - 2) == -1)
+	/*if (solvableCheck(map, length, width - 2) == -1)
 	{
 		free(aux);
 		return (NULL);
-	}
+	}*/
 	return (map);
 }
 

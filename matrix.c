@@ -29,7 +29,7 @@ char **matrix(int width,int length)
 		return (NULL);
 	while (i < length)
 	{
-		maps[i] = malloc((width) * sizeof(char));
+		maps[i] = malloc((width + 1) * sizeof(char));
 		if (maps[i] == NULL)
 		{
 			while (i >= 0)
@@ -46,20 +46,21 @@ char **matrix(int width,int length)
 }
 
 
-char **fillmatrix(char **map, char *map_name)
+char **fillmatrix(char **map, char *map_name, int length)
 {
 	int		i;
 	int		fd;
 	char	*aux;
 
 	fd = open(map_name, O_RDONLY);
-	aux = get_next_line(fd);
+	//aux = get_next_line(fd);
 	i = 0;
-	while (i < 12)
+	while (i < length)
 	{
-		map[i] = aux;
-		aux = get_next_line(fd);
+		map[i] = "HOLA\0";
+		//aux = get_next_line(fd);
 		i++;
 	}
+	close (fd);
 	return(map);
 }

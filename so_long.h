@@ -5,7 +5,7 @@
 char    **mapchecker(char *map);
 int	    matrixtam(char *map_name);
 char    **matrix(int width,int length);
-char **fillmatrix(char **map, char *map_name);
+char **fillmatrix(char **map, char *map_name, int length);
 int     nameformat(char *map);
 int		elementCounter(char **map, int length, int width, char element);
 int		elementchecker(char **map, int length, int width);

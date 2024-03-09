@@ -46,10 +46,11 @@ char **matrix(int width,int length)
 }
 
 
-char **fillmatrix(char **map, char *map_name, char *aux)
+char **fillmatrix(char **map, char *map_name)
 {
-	int	i;
-	int	fd;
+	int		i;
+	int		fd;
+	char	*aux;
 
 	fd = open(map_name, O_RDONLY);
 	aux = get_next_line(fd);

@@ -1,33 +1,30 @@
 #include "so_long.h"
 
-
 char	**mapchecker(char	*map_name)
 {
 	char	*aux;
 	char	**map;
 	int		fd;
 	int		length;
+	int		width;
 
 	if (nameformat(map_name) == -1)
 		return (NULL);
-	fd = open(map_name, O_RDONLY);
-	length = matrixtam(fd);
-	close (fd);
+	length = matrixtam(map_name);
 	fd = open(map_name, O_RDONLY);
 	aux = get_next_line(fd);
-	map = matrix(ft_strlen(aux), length, aux, fd);
-	close(fd);
-	fd = open(map_name, O_RDONLY);
-	map = fillmatrix(map,fd);
+	width = ft_strlen(aux);
+	ft_printf("%d", length);
+	map = matrix(width, length);
+	close (fd);
+	map = fillmatrix(map, map_name);
 	if (map == NULL)
 		return (NULL);
-	close(fd);
-	if (solvableCheck(map, length, ft_strlen(aux) - 2) == -1)
+	if (solvableCheck(map, length, width - 2) == -1)
 	{
 		free(aux);
 		return (NULL);
 	}
-	free(aux);
 	return (map);
 }
 

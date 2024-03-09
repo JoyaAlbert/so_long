@@ -1,10 +1,12 @@
 #include "so_long.h"
 
-int	matrixtam(int fd)
+int	matrixtam(char *map_name)
 {
-	int	i;
+	int		i;
 	char	*aux;
+	int		fd;
 
+	fd = open(map_name, O_RDONLY);
 	aux = get_next_line(fd);
 	i = 0;
 	while (aux)
@@ -12,10 +14,11 @@ int	matrixtam(int fd)
 		aux = get_next_line(fd);
 		i++;
 	}
+	close (fd);
 	return(i);
 }
 
-char **matrix(int width,int length, char *aux, int fd) 
+char **matrix(int width,int length) 
 {
 	char **maps;
 	int i;
@@ -23,34 +26,36 @@ char **matrix(int width,int length, char *aux, int fd)
 	i = 0;
 	maps = (char **)malloc(length * sizeof(char));
 	if (maps == NULL)
-		return (0);
-	while (aux)
+		return (NULL);
+	while (i < length)
 	{
-		maps[i] = malloc((width + 1) * sizeof(char));
+		maps[i] = malloc((width) * sizeof(char));
 		if (maps[i] == NULL)
 		{
-			while (i > 0)
+			while (i >= 0)
 			{
 				free(maps[i]);
 				i--;
 			}
 			free(maps);
-			return (0);
+			return (NULL);
 		}
 		i++;
-		aux = get_next_line(fd);
 	}
 	return (maps);
 }
 
-char **fillmatrix(char **map, int fd)
-{
-	char	*aux;
-	int		i;
 
-	i = 0;
+char **fillmatrix(char **map, char *map_name)
+{
+	int		i;
+	int		fd;
+	char	*aux;
+
+	fd = open(map_name, O_RDONLY);
 	aux = get_next_line(fd);
-	while (aux != NULL)
+	i = 0;
+	while (i < 12)
 	{
 		map[i] = aux;
 		aux = get_next_line(fd);

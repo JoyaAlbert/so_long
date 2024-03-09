@@ -2,22 +2,19 @@
 
 char	**mapchecker(char	*map_name)
 {
-	char	*aux;
+	char	*map_array;
 	char	**map;
-	int		fd;
 	int		length;
 	int		width;
 
+	length = 0;
 	if (nameformat(map_name) == -1)
 		return (NULL);
-	length = matrixtam(map_name);
-	fd = open(map_name, O_RDONLY);
-	aux = get_next_line(fd);
-	width = ft_strlen(aux);
-	ft_printf("%d\n", length);
+	map_array = get_map(map_name);
+	width = matrixwidth(map_array);
+	length = matrixlength(map_array);
 	map = matrix(width, length);
-	close (fd);
-	map = fillmatrix(map, map_name, length);
+	map = fillmatrix(map_array, length, width, map);
 	if (map == NULL)
 		return (NULL);
 	/*if (solvableCheck(map, length, width - 2) == -1)
@@ -67,4 +64,24 @@ int		solvableCheck(char	**map, int length, int width)
 		return (-1);
 		
 	return 0;
+}
+char	*get_map(char *map_name)
+{
+	int		fd;
+	char	*aux;
+	char	*map_array;
+
+	map_array = malloc(1);
+	if (map_array == NULL)
+		return (NULL);
+	fd = open(map_name, O_RDONLY);
+	aux = get_next_line(fd);
+	while (aux != NULL)
+	{
+		map_array = ft_strjoin(map_array, aux);
+		aux = get_next_line(fd);
+		//length++;
+	}
+	close (fd);
+	return (map_array);
 }

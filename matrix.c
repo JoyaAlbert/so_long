@@ -1,21 +1,29 @@
 #include "so_long.h"
 
-int	matrixtam(char *map_name)
+int	matrixwidth(char *map)
 {
 	int		i;
-	char	*aux;
-	int		fd;
 
-	fd = open(map_name, O_RDONLY);
-	aux = get_next_line(fd);
 	i = 0;
-	while (aux)
+	while (map[i] != '\n')
+		i++;
+	return (i + 1);
+}
+
+int	matrixlength(char *map)
+{
+	int i;
+	int	counter;
+
+	i = 0;
+	counter = 0;
+	while (map[i] != '\0')
 	{
-		aux = get_next_line(fd);
+		if (map[i] == '\n')
+			counter++;
 		i++;
 	}
-	close (fd);
-	return(i);
+	return (counter + 1);
 }
 
 char **matrix(int width,int length) 
@@ -29,7 +37,7 @@ char **matrix(int width,int length)
 		return (NULL);
 	while (i < length)
 	{
-		maps[i] = malloc((width + 1) * sizeof(char));
+		maps[i] = malloc((width) * sizeof(char));
 		if (maps[i] == NULL)
 		{
 			while (i >= 0)
@@ -46,21 +54,31 @@ char **matrix(int width,int length)
 }
 
 
-char **fillmatrix(char **map, char *map_name, int length)
+char	**fillmatrix(char *map_array, int length, int width, char **map)
 {
-	int		i;
-	int		fd;
 	char	*aux;
+	int	i;
+	int	j;
+	int	k;
 
-	fd = open(map_name, O_RDONLY);
-	//aux = get_next_line(fd);
+	aux = malloc(width);
+	if (aux == NULL)
+		return (NULL);
+	j = 0;
 	i = 0;
 	while (i < length)
 	{
-		map[i] = "HOLA\0";
-		//aux = get_next_line(fd);
+		k = 0;
+		while (map_array[j] != '\n' && map_array[j] != '\0')
+		{
+			aux[k] = map_array[j];
+			ft_printf("%c", aux[k]);
+			j++;
+			k++;
+		}
+		aux[k] = '\0';
+		map[i] = aux;
 		i++;
 	}
-	close (fd);
-	return(map);
+	return (map);
 }

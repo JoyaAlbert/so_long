@@ -6,20 +6,19 @@ char	**mapchecker(char	*map_name)
 	char	**map;
 	int		fd;
 	int		length;
+	int		i;
 
+	i = 0;
 	if (nameformat(map_name) == -1)
 		return (NULL);
-	fd = open(map_name, O_RDONLY);
-	length = matrixtam(fd);
-	close (fd);
+	length = matrixtam(map_name);
 	fd = open(map_name, O_RDONLY);
 	aux = get_next_line(fd);
-	map = matrix(ft_strlen(aux), length, aux, fd);
-	close(fd);
-	fd = open(map_name, O_RDONLY);
-	map = fillmatrix(map,fd);
-	close(fd);
-	return (map);
+	ft_printf("%d", length);
+	map = matrix(ft_strlen(aux), length);
+	close (fd);
+	map = fillmatrix(map, map_name, aux);
+	return (NULL);
 }
 
 int	nameformat(char *map)

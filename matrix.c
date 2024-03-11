@@ -37,7 +37,7 @@ char **matrix(int width,int length)
 		return (NULL);
 	while (i < length)
 	{
-		maps[i] = malloc((width) * sizeof(char));
+		maps[i] = malloc((1) * sizeof(char));
 		if (maps[i] == NULL)
 		{
 			while (i >= 0)
@@ -61,24 +61,24 @@ char	**fillmatrix(char *map_array, int length, int width, char **map)
 	int	j;
 	int	k;
 
+	j = 0;
+	i = 0;
 	aux = malloc(width);
 	if (aux == NULL)
 		return (NULL);
-	j = 0;
-	i = 0;
 	while (i < length)
 	{
 		k = 0;
-		while (map_array[j] != '\n' && map_array[j] != '\0')
+		while (k < width)
 		{
 			aux[k] = map_array[j];
-			ft_printf("%c", aux[k]);
 			j++;
 			k++;
 		}
 		aux[k] = '\0';
-		map[i] = aux;
+		map[i] =ft_strdup(aux);
 		i++;
 	}
+	free(aux);
 	return (map);
 }

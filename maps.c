@@ -19,7 +19,7 @@ char	**mapchecker(char	*map_name)
 		return (NULL);
 	/*if (solvableCheck(map, length, width - 2) == -1)
 	{
-		free(aux);
+		printf("esta maal");
 		return (NULL);
 	}*/
 	return (map);
@@ -62,7 +62,6 @@ int		solvableCheck(char	**map, int length, int width)
 	}
 	if (elementchecker(map, length, width) == -1)
 		return (-1);
-		
 	return 0;
 }
 char	*get_map(char *map_name)
@@ -75,12 +74,16 @@ char	*get_map(char *map_name)
 	if (map_array == NULL)
 		return (NULL);
 	fd = open(map_name, O_RDONLY);
-	aux = get_next_line(fd);
-	while (aux != NULL)
+	while (1)
 	{
-		map_array = ft_strjoin(map_array, aux);
 		aux = get_next_line(fd);
-		//length++;
+		if (!aux)
+		{
+			free(aux);
+			break;
+		}
+		map_array = ft_strjoin(map_array, aux);
+		free(aux);
 	}
 	close (fd);
 	return (map_array);

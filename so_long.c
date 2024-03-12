@@ -6,7 +6,7 @@ void *myleaks()
 }
 int main(int argc, char *argv[])
 {   
-    char    *map_name = "map_files/laby.ber";
+    char    *map_name = "map_files/map_0.ber";
 	char	*map_array;
 	char	**map;
 	int		length;

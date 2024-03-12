@@ -82,3 +82,15 @@ char	**fillmatrix(char *map_array, int length, int width, char **map)
 	free(aux);
 	return (map);
 }
+
+void matrix_free(char **map, int length)
+{
+	int i;
+
+	i = length -1;
+	while (i >= 0)
+	{
+		free(map[i]);
+		i--;
+	}
+}

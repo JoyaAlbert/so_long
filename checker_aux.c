@@ -7,8 +7,11 @@ int		elementCounter(char **map, int length, int width, char element)
 	int	j;
 	int	counter;
 
+	i = 0;
+	counter = 0;
 	while (i < length)
 	{
+		j = 0;
 		while (j < width)
 		{
 			if (map[i][j] == element)
@@ -25,9 +28,9 @@ int		elementchecker(char **map, int length, int width)
 		return (-1);
 	if (elementCounter(map, length, width, 'E') != 1)
 		return (-1);
-	else if (elementCounter(map, length, width, 'C') == 0)
+	if (elementCounter(map, length, width, 'C') == 0)
 		return (-1);
-	else if (elementCounter(map, length, width, '0') == 0)
+	if (elementCounter(map, length, width, '0') == 0)
 		return (-1);
 	return (0);
 }

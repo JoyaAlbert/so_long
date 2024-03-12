@@ -1,27 +1,20 @@
 #include "so_long.h"
 
-char	**mapchecker(char	*map_name)
+char	**mapchecker(char	*map_name, int length, char *map_array)
 {
-	char	*map_array;
 	char	**map;
-	int		length;
 	int		width;
 
-	length = 0;
-	if (nameformat(map_name) == -1)
-		return (NULL);
-	map_array = get_map(map_name);
 	width = matrixwidth(map_array);
-	length = matrixlength(map_array);
 	map = matrix(width, length);
 	map = fillmatrix(map_array, length, width, map);
 	if (map == NULL)
 		return (NULL);
-	/*if (solvableCheck(map, length, width - 2) == -1)
+	if (solvableCheck(map, length, width - 2) == -1)
 	{
 		printf("esta maal");
 		return (NULL);
-	}*/
+	}
 	return (map);
 }
 
@@ -37,7 +30,10 @@ int	nameformat(char *map)
 		if(map[ft_strlen(map) -1 -i] == format[ft_strlen(format)-1-i])
             i++;
         else
+		{
+			ft_printf("must be a .ber file\n");
 			return (-1);
+		}
 	}
 	return 1;
 }
@@ -74,6 +70,11 @@ char	*get_map(char *map_name)
 	if (map_array == NULL)
 		return (NULL);
 	fd = open(map_name, O_RDONLY);
+	if (fd == -1)
+	{
+		printf("error opening the file\n");
+		return (NULL);
+	}
 	while (1)
 	{
 		aux = get_next_line(fd);

@@ -3,7 +3,6 @@
 int	matrixwidth(char *map)
 {
 	int		i;
-
 	i = 0;
 	while (map[i] != '\n')
 		i++;
@@ -35,9 +34,9 @@ char **matrix(int width,int length)
 	maps = (char **)malloc(length * sizeof(char));
 	if (maps == NULL)
 		return (NULL);
-	/*while (i < length)
+	while (i < length)
 	{
-		maps[i] = malloc((1) * sizeof(char));
+		maps[i] = malloc(width);
 		if (maps[i] == NULL)
 		{
 			while (i >= 0)
@@ -49,7 +48,7 @@ char **matrix(int width,int length)
 			return (NULL);
 		}
 		i++;
-	}*/
+	}
 	return (maps);
 }
 
@@ -66,8 +65,10 @@ char	**fillmatrix(char *map_array, int length, int width, char **map)
 	aux = malloc(width);
 	if (aux == NULL)
 		return (NULL);
+
 	while (i < length)
 	{
+
 		k = 0;
 		while (k < width)
 		{
@@ -76,18 +77,15 @@ char	**fillmatrix(char *map_array, int length, int width, char **map)
 			k++;
 		}
 		aux[k] = '\0';
-		map[i] =ft_strdup(aux);
+		map[i] = aux;
 		i++;
 	}
-	free(aux);
+	
 	return (map);
 }
 
-void matrix_free(char **map, int length)
+void matrix_free(char **map, int i)
 {
-	int i;
-
-	i = length -1;
 	while (i >= 0)
 	{
 		free(map[i]);

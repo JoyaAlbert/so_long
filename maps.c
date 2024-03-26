@@ -1,15 +1,18 @@
 #include "so_long.h"
 
-char	**mapchecker(char	*map_name, int length, char *map_array)
+char	**mapchecker(int length, char *map_array)
 {
 	char	**map;
 	int		width;
 
 	width = matrixwidth(map_array);
+
 	map = matrix(width, length);
-	map = fillmatrix(map_array, length, width, map);
 	if (map == NULL)
 		return (NULL);
+	map = fillmatrix(map_array, length, width, map);
+
+	
 	if (solvableCheck(map, length, width - 2) == -1)
 	{
 		printf("esta maal");
@@ -79,10 +82,7 @@ char	*get_map(char *map_name)
 	{
 		aux = get_next_line(fd);
 		if (!aux)
-		{
-			free(aux);
 			break;
-		}
 		map_array = ft_strjoin(map_array, aux);
 		free(aux);
 	}

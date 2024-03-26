@@ -4,7 +4,7 @@
 
 int     nameformat(char *map);
 //maps
-char    **mapchecker(char *map, int length, char *map_array);
+char    **mapchecker(int length, char *map_array);
 int		elementCounter(char **map, int length, int width, char element);
 int		elementchecker(char **map, int length, int width);
 int		solvableCheck(char	**map, int length, int width);

@@ -8,6 +8,7 @@ char    **mapchecker(int length, char *map_array);
 int		elementCounter(char **map, int length, int width, char element);
 int		elementchecker(char **map, int length, int width);
 int		solvableCheck(char	**map, int length, int width);
+int	    possibleWay(char **map, int length, int width);
 char	*get_map(char *map_name);
 //matrix
 int	    matrixwidth(char *map_array);

@@ -11,10 +11,10 @@ char	**mapchecker(int length, char *map_array)
 		return (NULL);
 	map = fillmatrix(map_array, length, width, map);
 	if (solvableCheck(map, length, width - 2) == -1)
-	{
-		printf("esta maal");
 		return (NULL);
-	}
+	if (possibleWay(map, length, width - 2) == -1)
+		return (NULL);
+	ft_printf("SOLVABLE MAP\n");
 	return (map);
 }
 
@@ -46,19 +46,25 @@ int		solvableCheck(char	**map, int length, int width)
 	while (i < length)
 	{
 		if (map[i][0] != '1' || map[i][width] != '1')
+		{
+			ft_printf("NOT CLOSED BY WALLS OR DIFFERENTS WIDTHS\n");
 			return (-1);
+		}
 		i++;
 	}
 	i = 0;	
 	while (i <  width)
 	{
 		if(map[0][i] != '1' || map[length -1][i] != '1')
+		{
+			ft_printf("NOT CLOSED BY WALLS OR DIFFERENTS WIDTHS \n");
 			return (-1);
+		}
 		i++;
 	}
 	if (elementchecker(map, length, width) == -1)
 		return (-1);
-	return 0;
+	return (0);
 }
 char	*get_map(char *map_name)
 {
@@ -72,7 +78,7 @@ char	*get_map(char *map_name)
 	fd = open(map_name, O_RDONLY);
 	if (fd == -1)
 	{
-		printf("error opening the file\n");
+		ft_printf("error opening the file\n");
 		return (NULL);
 	}
 	while (1)

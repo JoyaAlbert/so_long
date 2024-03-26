@@ -35,7 +35,7 @@ char **matrix(int width,int length)
 	maps = (char **)malloc(length * sizeof(char));
 	if (maps == NULL)
 		return (NULL);
-	while (i < length)
+	/*while (i < length)
 	{
 		maps[i] = malloc((1) * sizeof(char));
 		if (maps[i] == NULL)
@@ -49,7 +49,7 @@ char **matrix(int width,int length)
 			return (NULL);
 		}
 		i++;
-	}
+	}*/
 	return (maps);
 }
 

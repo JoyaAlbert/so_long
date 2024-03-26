@@ -25,7 +25,7 @@ int	matrixlength(char *map)
 	return (counter + 1);
 }
 
-char **matrix(int width,int length) 
+char **matrix(int length) 
 {
 	char **maps;
 	int i;

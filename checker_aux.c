@@ -18,7 +18,7 @@ int	blockedelement(char **map, int i, int j)
 		return (-1);
 	return (0);
 }
-int	possibleWay(char **map, int length, int width)
+int	possibleWay(char **map, int length)
 {
 	int i;
 	int j;

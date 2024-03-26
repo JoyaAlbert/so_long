@@ -4,7 +4,7 @@ void myleaks()
 {
 	system("leaks -q a.out");
 }
-int main(int argc, char *argv[])
+int main()
 {   
     char    *map_name = "map_files/map_0.ber";
 	char	**map;

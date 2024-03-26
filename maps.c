@@ -6,13 +6,13 @@ char	**mapchecker(int length, char *map_array)
 	int		width;
 
 	width = matrixwidth(map_array);
-	map = matrix(width, length);
+	map = matrix(length);
 	if (map == NULL)
 		return (NULL);
 	map = fillmatrix(map_array, length, width, map);
 	if (solvableCheck(map, length, width - 2) == -1)
 		return (NULL);
-	if (possibleWay(map, length, width - 2) == -1)
+	if (possibleWay(map, length) == -1)
 		return (NULL);
 	ft_printf("SOLVABLE MAP\n");
 	return (map);

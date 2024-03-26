@@ -36,7 +36,7 @@ char **matrix(int width,int length)
 		return (NULL);
 	while (i < length)
 	{
-		maps[i] = malloc(width);
+		maps[i] = malloc(1);
 		if (maps[i] == NULL)
 		{
 			while (i >= 0)
@@ -65,22 +65,20 @@ char	**fillmatrix(char *map_array, int length, int width, char **map)
 	aux = malloc(width);
 	if (aux == NULL)
 		return (NULL);
-
 	while (i < length)
 	{
-
 		k = 0;
-		while (k < width)
+		while (map_array[j] != '\n' && map_array[j] != '\0')
 		{
 			aux[k] = map_array[j];
 			j++;
 			k++;
 		}
 		aux[k] = '\0';
-		map[i] = aux;
+		map[i] = ft_strdup(aux);
 		i++;
+		j++;
 	}
-	
 	return (map);
 }
 

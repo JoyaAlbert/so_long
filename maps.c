@@ -6,13 +6,10 @@ char	**mapchecker(int length, char *map_array)
 	int		width;
 
 	width = matrixwidth(map_array);
-
 	map = matrix(width, length);
 	if (map == NULL)
 		return (NULL);
 	map = fillmatrix(map_array, length, width, map);
-
-	
 	if (solvableCheck(map, length, width - 2) == -1)
 	{
 		printf("esta maal");

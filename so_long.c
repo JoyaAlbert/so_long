@@ -6,9 +6,10 @@ void myleaks()
 }
 int main(int argc, char *argv[])
 {   
-    char    *map_name = "map_files/map_0.ber";
-	char	*map_array;
+    char    *map_name = "map_files/test.ber";
 	char	**map;
+	char	*map_array;
+
 	int		length;
 
 	//atexit(myleaks);
@@ -17,7 +18,6 @@ int main(int argc, char *argv[])
 	map_array = get_map(map_name);
 	if (map_array == NULL)
 		return (0);
-
 	length = matrixlength(map_array);
 	map = mapchecker(length, map_array);
 	if (map == NULL)
@@ -25,6 +25,8 @@ int main(int argc, char *argv[])
 		free(map_array);
 		return (0);
 	}
+	for (int i = 0; i < length; i++)
+		ft_printf("%s\n", map[i]);
 	matrix_free(map, length-1);
 	free(map_array);
 	return (0);

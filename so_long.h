@@ -14,5 +14,8 @@ char	*get_map(char *map_name);
 int	    matrixwidth(char *map_array);
 int	    matrixlength(char *map_array);
 char    **matrix(int length);
-char	**fillmatrix(char *map_array, int length, int width, char **map);
+//char	**fillmatrix(char *map_array, int length, int width, char **map);
 void    matrix_free(char **map, int length);
+
+
+char	**ft_split(char const *s, char c);

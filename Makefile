@@ -1,4 +1,4 @@
-SRC				=	gnl/get_next_line.c gnl/get_next_line_utils.c printf/ft_printf.c printf/ft_printf_utils.c printf/ft_printf_scdi.c printf/ft_printf_u.c printf/ft_printf_x.c printf/ft_printf_p.c matrix.c maps.c checker_aux.c
+SRC				=	gnl/get_next_line.c gnl/get_next_line_utils.c printf/ft_printf.c printf/ft_printf_utils.c printf/ft_printf_scdi.c printf/ft_printf_u.c printf/ft_printf_x.c printf/ft_printf_p.c matrix.c maps.c checker_aux.c map_split.c
 OBJ				=	$(SRC:.c=.o)
 LIB				=	ar rcs
 CFLAGS			=	-Wall -Wextra -Werror

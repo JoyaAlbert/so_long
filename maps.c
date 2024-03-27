@@ -6,10 +6,11 @@ char	**mapchecker(int length, char *map_array)
 	int		width;
 
 	width = matrixwidth(map_array);
-	map = matrix(length);
-	if (map == NULL)
-		return (NULL);
-	map = fillmatrix(map_array, length, width, map);
+	map = ft_split(map_array, '\n');
+	for (int z = 0; z < length; z++)
+	{
+		printf("%s\n", map[z]);
+	}
 	if (solvableCheck(map, length, width - 2) == -1)
 		return (NULL);
 	if (possibleWay(map, length) == -1)

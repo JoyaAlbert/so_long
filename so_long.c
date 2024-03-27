@@ -6,7 +6,7 @@ void myleaks()
 }
 int main()
 {   
-    char    *map_name = "map_files/small.ber";
+    char    *map_name = "map_files/map_0.ber";
 	char	**map;
 	char	*map_array;
 
@@ -24,10 +24,6 @@ int main()
 	{
 		free(map_array);
 		return (0);
-	}
-	for (int i = 0; i < length; i++)
-	{
-		printf("%s\n", map[i]);
 	}
 	matrix_free(map, length -1);
 	free(map_array);

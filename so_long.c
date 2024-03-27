@@ -9,10 +9,9 @@ int main()
     char    *map_name = "map_files/map_0.ber";
 	char	**map;
 	char	*map_array;
-
 	int		length;
 
-	atexit(myleaks);
+//	atexit(myleaks);
 	if (nameformat(map_name) == -1)
 		return (0);
 	map_array = get_map(map_name);
@@ -23,6 +22,7 @@ int main()
 	if (map == NULL)
 	{
 		free(map_array);
+		matrix_free(map, length -1);
 		return (0);
 	}
 	matrix_free(map, length -1);

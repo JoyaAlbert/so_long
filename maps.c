@@ -9,7 +9,7 @@ char	**mapchecker(int length, char *map_array)
 	map = ft_split(map_array, '\n');
 	for (int z = 0; z < length; z++)
 	{
-		printf("%s\n", map[z]);
+		ft_printf("%s\n", map[z]);
 	}
 	if (solvableCheck(map, length, width - 2) == -1)
 		return (NULL);
@@ -73,15 +73,16 @@ char	*get_map(char *map_name)
 	char	*aux;
 	char	*map_array;
 
-	map_array = malloc(1);
-	if (map_array == NULL)
-		return (NULL);
 	fd = open(map_name, O_RDONLY);
 	if (fd == -1)
 	{
 		ft_printf("error opening the file\n");
 		return (NULL);
 	}
+	map_array = malloc(1);
+	if (map_array == NULL)
+		return (NULL);
+	fd = open(map_name, O_RDONLY);
 	while (1)
 	{
 		aux = get_next_line(fd);

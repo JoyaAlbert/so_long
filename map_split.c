@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 #include "so_long.h"
 
-static char	*ft_strndup(const char *s1, int n)
+char	*ft_strndup(char *s1, int n)
 {
 	char	*s2;
 
@@ -22,7 +22,7 @@ static char	*ft_strndup(const char *s1, int n)
 	return (s2);
 }
 
-static int	countwords(char const *s, char c)
+int	countwords(char *s, char c)
 {
 	int	i;
 	int	count;
@@ -44,7 +44,7 @@ static int	countwords(char const *s, char c)
 	return (count);
 }
 
-static char	**freesplits(char **split, int k)
+char	**freesplits(char **split, int k)
 {
 	if (split[k] == NULL)
 	{
@@ -59,7 +59,7 @@ static char	**freesplits(char **split, int k)
 	return (split);
 }
 
-static char	**fillmatrix(char const *s, char c, char **split)
+char	**fillmatrix(char *s, char c, char **split)
 {
 	int	i;
 	int	j;
@@ -86,7 +86,7 @@ static char	**fillmatrix(char const *s, char c, char **split)
 	return (split);
 }
 
-char	**ft_split(char const *s, char c)
+char	**ft_split(char *s, char c)
 {
 	char	**split;
 

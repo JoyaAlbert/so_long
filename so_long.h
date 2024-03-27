@@ -18,4 +18,4 @@ char    **matrix(int length);
 void    matrix_free(char **map, int length);
 
 
-char	**ft_split(char const *s, char c);
+char	**ft_split(char *s, char c);

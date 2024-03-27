@@ -6,7 +6,7 @@ void myleaks()
 }
 int main()
 {   
-    char    *map_name = "map_files/map_0.ber";
+    char    *map_name = "map_files/small.ber";
 	char	**map;
 	char	*map_array;
 

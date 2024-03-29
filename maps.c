@@ -1,72 +1,5 @@
 #include "so_long.h"
 
-char	**mapchecker(int length, char *map_array)
-{
-	char	**map;
-	int		width;
-
-	width = matrixwidth(map_array);
-	map = ft_split(map_array, '\n');
-	for (int z = 0; z < length; z++)
-	{
-		ft_printf("%s\n", map[z]);
-	}
-	if (solvableCheck(map, length, width - 2) == -1)
-		return (NULL);
-	if (possibleWay(map, length) == -1)
-		return (NULL);
-	ft_printf("SOLVABLE MAP\n");
-	return (map);
-}
-
-int	nameformat(char *map)
-{
-	int i;
-	char *format;
-	
-	format = ".ber";
-	i = 0;
-	while (i <= 3)
-	{
-		if(map[ft_strlen(map) -1 -i] == format[ft_strlen(format)-1-i])
-            i++;
-        else
-		{
-			ft_printf("must be a .ber file\n");
-			return (-1);
-		}
-	}
-	return 1;
-}
-
-int		solvableCheck(char	**map, int length, int width)
-{
-	int i;
-
-	i = 0;
-	while (i < length)
-	{
-		if (map[i][0] != '1' || map[i][width] != '1')
-		{
-			ft_printf("NOT CLOSED BY WALLS OR DIFFERENTS WIDTHS\n");
-			return (-1);
-		}
-		i++;
-	}
-	i = 0;	
-	while (i <  width)
-	{
-		if(map[0][i] != '1' || map[length -1][i] != '1')
-		{
-			ft_printf("NOT CLOSED BY WALLS OR DIFFERENTS WIDTHS \n");
-			return (-1);
-		}
-		i++;
-	}
-	if (elementchecker(map, length, width) == -1)
-		return (-1);
-	return (0);
-}
 char	*get_map(char *map_name)
 {
 	int		fd;
@@ -93,4 +26,107 @@ char	*get_map(char *map_name)
 	}
 	close (fd);
 	return (map_array);
+}
+int	nameformat(char *map)
+{
+	int i;
+	char *format;
+	
+	format = ".ber";
+	i = 0;
+	while (i <= 3)
+	{
+		if(map[ft_strlen(map) -1 -i] == format[ft_strlen(format)-1-i])
+            i++;
+        else
+		{
+			ft_printf("must be a .ber file\n");
+			return (-1);
+		}
+	}
+	return 1;
+}
+
+char	**mapchecker(int length, char *map_array)
+{
+	char	**map;
+	int		width;
+
+	width = matrixwidth(map_array);
+	if (width == -1)
+		return (NULL);
+	map = ft_split(map_array, '\n');
+	if (strangechar(map, length) == -1)
+	{
+		matrix_free(map, length);
+		return (NULL);
+	}
+	if (solvableCheck(map, length, width - 2) == -1)
+	{
+		matrix_free(map, length);
+		return (NULL);
+	}
+	if (possibleWay(map, length) == -1)
+	{
+		matrix_free(map, length);
+		return (NULL);
+	}
+	ft_printf("SOLVABLE MAP\n");
+	return (map);
+}
+
+
+
+int		solvableCheck(char	**map, int length, int width)
+{
+	int i;
+
+	i = 0;
+	while (i < length)
+	{
+		if (map[i][0] != '1' || map[i][width] != '1')
+		{
+			ft_printf("NOT CLOSED BY WALLS\n");
+			return (-1);
+		}
+		i++;
+	}
+	i = 0;	
+	while (i <  width)
+	{
+		if(map[0][i] != '1' || map[length -1][i] != '1')
+		{
+			ft_printf("NOT CLOSED BY WALLS\n");
+			return (-1);
+		}
+		i++;
+	}
+	if (elementchecker(map, length, width) == -1)
+		return (-1);
+	return (0);
+}
+
+int strangechar(char **map, int length)
+{
+	int i;
+	int j;
+
+	i = 0;
+	while (i <length)
+	{
+		j = 0;
+		while (map[i][j] != '\0')
+		{
+			if (map[i][j] != '0' && map[i][j] != '1' && map[i][j] != 'P'
+				&& map[i][j] != 'E' && map[i][j] != 'C')
+			{
+				ft_printf("STRANGE CHARACTER\n");
+				return(-1);
+
+			}
+			j++;
+		}
+		i++;
+	}
+	return(0);
 }

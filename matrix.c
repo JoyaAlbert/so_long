@@ -3,11 +3,29 @@
 int	matrixwidth(char *map)
 {
 	int	i;
+	int	k;
+	int	size;
 
 	i = 0;
 	while (map[i] != '\n')
 		i++;
-	return (i + 1);
+	size = i;
+	while (map[i] != '\0')
+	{
+		i++;
+		k = 0;
+		while (map[i] != '\n' && map[i] != '\0')
+		{
+			k++;
+			i++;
+		}
+		if (k != size)
+		{
+			ft_printf("NOT SAME NUMBER OF ELEMENTTS FOR LINE\n");
+			return (-1);
+		}
+	}
+	return (size + 1);
 }
 
 int	matrixlength(char *map)

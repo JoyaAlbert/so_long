@@ -11,7 +11,7 @@ int main()
 	char	*map_array;
 	int		length;
 
-//	atexit(myleaks);
+	atexit(myleaks);
 	if (nameformat(map_name) == -1)
 		return (0);
 	map_array = get_map(map_name);
@@ -22,8 +22,11 @@ int main()
 	if (map == NULL)
 	{
 		free(map_array);
-		matrix_free(map, length -1);
 		return (0);
+	}
+	for (int z = 0; z < length; z++)
+	{
+		ft_printf("%s\n", map[z]);
 	}
 	matrix_free(map, length -1);
 	free(map_array);

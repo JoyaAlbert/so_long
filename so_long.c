@@ -24,10 +24,6 @@ int main()
 		free(map_array);
 		return (0);
 	}
-	for (int z = 0; z < length; z++)
-	{
-		ft_printf("%s\n", map[z]);
-	}
 	matrix_free(map, length -1);
 	free(map_array);
 	return (0);

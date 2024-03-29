@@ -88,3 +88,53 @@ int		elementchecker(char **map, int length, int width)
 	}
 	return (0);
 }
+
+int elementsTofind(char **map, int length)
+{
+	int	i;
+	int	j;
+	int	counter;
+
+	counter = 0;
+	i = 0;
+	j = 0;
+	while (i < length)
+	{
+		while  (map[i][j] != '\0')
+		{
+			if (map[i][j] == 'C' || map[i][j] == 'E')
+				counter++;
+			j++;
+		}
+		i++;
+	}
+	return (counter);
+}
+
+int	resolver(char **map, int i, int j, int elNum)
+{
+
+}
+int	player(char **map, int length)
+{
+	int i;
+	int j;
+	char	**mapcpy;
+	int	elNum;
+
+	elNum = elementsTofind(map, length);
+	mapcpy = map;
+	i = 0;
+	j = 0;
+	while (i < length)
+	{
+		while  (map[i][j] != '\0')
+		{
+			if (map[i][j] == 'P')
+				return (resolver(mapcpy, i, j, elNum));
+			j++;
+		}
+		i++;
+	}
+	return (0);
+}

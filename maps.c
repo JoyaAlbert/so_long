@@ -15,7 +15,6 @@ char	*get_map(char *map_name)
 	map_array = malloc(1);
 	if (map_array == NULL)
 		return (NULL);
-	fd = open(map_name, O_RDONLY);
 	while (1)
 	{
 		aux = get_next_line(fd);

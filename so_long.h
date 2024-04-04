@@ -4,15 +4,16 @@
 
 int     nameformat(char *map);
 //maps
-char    **mapchecker(int length, char *map_array);
+char	**mapchecker(int length, char *map_array, char **mapcpy);
 int		elementCounter(char **map, char element);
 int		elementchecker(char **map);
 int		solvableCheck(char	**map, int length, int width);
 int     strangechar(char **map);
-int	    possibleWay(char **map);
+int	possibleWay(char **map, char **mapcpy);
 char	*get_map(char *map_name);
-
-int	player(char **map);
+int elementsTofind(char **map);
+int	player(char **map, char **mapcpy);
+int	blockedelement(char **map, int i, int j);
 //matrix
 int	    matrixwidth(char *map_array);
 int	    matrixlength(char *map_array);

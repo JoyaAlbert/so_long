@@ -14,14 +14,14 @@ int	blockedelement(char **map, int i, int j)
 		counter++;
 	if(map[i + 1][j] == '1')
 		counter++;
-	if (counter == 4)
+	if (counter == 3)
 		return (-1);
 	return (0);
 }
 
-int	possibleWay(char **map)
+int	possibleWay(char **map, char **mapcpy)
 {
-	int i;
+	/*int i;
 	int j;
 
 	i = 0;
@@ -41,8 +41,8 @@ int	possibleWay(char **map)
 			j++;
 		}
 		i++;
-	}
-	return (0);
+	}*/
+	return (player(map, mapcpy));
 }
 int		elementCounter(char **map, char element)
 {
@@ -98,9 +98,9 @@ int elementsTofind(char **map)
 
 	counter = 0;
 	i = 0;
-	j = 0;
-	while (map[i])
+	while (map[i] != NULL)
 	{
+		j = 0;
 		while  (map[i][j] != '\0')
 		{
 			if (map[i][j] == 'C' || map[i][j] == 'E')
@@ -111,96 +111,4 @@ int elementsTofind(char **map)
 	}
 	return (counter);
 }
-void printm(char	**a)
-{
-	int i = 0;
-	while(a[i])
-	{
-		ft_printf("%s\n", a[i]);
-		i++;
-	}
-}
-int	resolver(char **mapcpy, char **map, int i, int j, int counter)
-{
-	int	elNum;
 
-
-	elNum =elementsTofind(map);
-	ft_printf("%d  %d\n", counter, elNum);
-	while(counter != elNum)
-	{
-		while (map[i - 1][j] != '1' && map[i][j -1] != 'x' )
-		{
-			i--;
-			if (map[i][j] == 'C' || map[i][j] == 'E')
-			{
-				mapcpy = map;
-				counter++;
-			}
-			mapcpy[i][j] = 'x';
-			printm(mapcpy);
-		}
-		while (map[i][j -1] != '1' && map[i][j -1] != 'x' )
-		{
-			j--;
-			if (map[i][j] == 'C' || map[i][j] == 'E')
-			{
-				mapcpy = map;
-				counter++;
-			}
-			mapcpy[i][j] = 'x';
-			printm(mapcpy);
-			resolver(mapcpy, map, i, j, counter);
-		}
-		while (map[i + 1][j] != '1' && map[i][j -1] != 'x' )
-		{
-			i++;
-			if (map[i][j] == 'C' || map[i][j] == 'E')
-			{
-				mapcpy = map;
-				counter++;
-			}
-			mapcpy[i][j] = 'x';
-			printm(mapcpy);
-			resolver(mapcpy, map, i, j, counter);
-		}
-		while (map[i][j + 1] != '1' && map[i][j -1] != 'x' )
-		{
-			j++;
-			if (map[i][j] == 'C' || map[i][j] == 'E')
-			{
-				mapcpy = map;
-				counter++;
-			}
-			mapcpy[i][j] = 'x';
-			printm(mapcpy);
-			resolver(mapcpy, map, i, j, counter);
-		}
-		if(counter != elNum)
-			return -1;
-	}
-	return 0;
-}
-int	player(char **map)
-{
-	int i;
-	int j;
-	char	**mapcpy;
-	int	counter;
-
-	counter  = 1;
-	mapcpy = map;
-	i = 0;
-	j = 0;
-	while (map[i])
-	{
-		while  (map[i][j] != '\0')
-		{
-			if (map[i][j] == 'P')
-				return (resolver(mapcpy, map, i, j, counter));
-			j++;
-		}
-		i++;
-	}
-	return (0);
-}

@@ -1,8 +1,9 @@
-SRC				=	gnl/get_next_line.c gnl/get_next_line_utils.c printf/ft_printf.c printf/ft_printf_utils.c printf/ft_printf_scdi.c printf/ft_printf_u.c printf/ft_printf_x.c printf/ft_printf_p.c matrix.c maps.c checker_aux.c map_split.c
-OBJ				=	$(SRC:.c=.o)
-LIB				=	ar rcs
+SRC				=	gnl/get_next_line.c gnl/get_next_line_utils.c printf/ft_printf.c printf/ft_printf_utils.c printf/ft_printf_scdi.c printf/ft_printf_u.c printf/ft_printf_x.c printf/ft_printf_p.c \
+					matrix.c maps.c checker_aux.c map_split.c resolution.c so_long.c
+GCC 			=	gcc
 CFLAGS			=	-Wall -Wextra -Werror
-NAME			=	so_long.a
+OBJ				=	$(SRC:.c=.o)
+NAME			=	so_long
 
 CLR_RMV		:= \033[0m
 RED		    := \033[1;31m
@@ -12,8 +13,9 @@ BLUE		:= \033[1;34m
 CYAN 		:= \033[1;36m
 
 $(NAME):		$(OBJ)
+				@clear
 				@echo "$(GREEN)Compilation ${CLR_RMV}of ${YELLOW}$(NAME) ${CYAN}"
-				$(LIB) $(FLAGS) $(NAME) $(OBJ)
+				$(GCC) $(FLAGS) -o $(NAME) $(OBJ)
 
 
 all:			$(NAME)
@@ -21,17 +23,20 @@ all:			$(NAME)
 RM				=	rm -f
 
 pato:			
+				@clear 
 				@echo "${YELLOW}'⣿⣿⣿⣿⣿⣿⣿⣿⡿⢋⣩⣭⣶⣶⣮⣭⡙⠿⣿⣿⣿⣿⣿⣿'\n'⣿⣿⣿⣿⣿⣿⠿⣋⣴⣿⣿⣿⣿⣿⣿⣿⣿⣿⣦⡙⢿⣿⣿⣿'\n'⣿⣿⣿⣿⣿⡃⠄⠹⡿⣿⣿⣿⣿⠟⠛⣿⣿⣿⣿⣷⡌⢿⣿⣿'\n'⣿⣿⣿⣿⣿⠐⣠⡶⣶⣲⡎⢻⣿⣤⣴⣾⣿⣿⣿⣿⣿⠸⣿⣿'\n'⣿⠟⣋⡥⡶⣞⡯⣟⣾⣺⢽⡧⣥⣭⣉⢻⣿⣿⣿⣿⣿⣆⢻⣿"
 				@echo "${YELLOW}'⡃⣾⢯⢿⢽⣫⡯⣷⣳⢯⡯⠯⠷⠻⠞⣼⣿⣿⣿⣿⣿⣿⡌⣿'\n'⣦⣍⡙⠫⠛⠕⣋⡓⠭⣡⢶⠗⣡⣶⡝⣿⣿⣿⣿⣿⣿⣿⣧⢹'\n'⣿⣿⣿⣿⣿⣿⣘⣛⣋⣡⣵⣾⣿⣿⣿⢸⣿⣿⣿⣿⣿⣿⣿⢸'\n'⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⢸⣿⣿⣿⣿⣿⣿⣿⢸'\n'⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⢸⣿⣿⣿⣿⣿⣿⣿⢸'\n'⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⢸⣿⣿⣿⣿⣿⣿⣿⢸'\n'"
 
 
-
-clean:
+clean:			
 				@echo "$(RED)Deleting ${YELLOW}.o ${CLR_RMV}"
-				$(RM) $(OBJ) 
-fclean:			pato clean
+				$(RM) $(OBJ)
+
+fclean:			pato clean 
 				@echo "$(RED)Deleting ${YELLOW}.a ${CLR_RMV}"
-				$(RM) $(NAME)
+				$(RM) $(NAME) 
+				
+
 
 re:				fclean all
 

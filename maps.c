@@ -46,7 +46,7 @@ int	nameformat(char *map)
 	return 1;
 }
 
-char	**mapchecker(int length, char *map_array)
+char	**mapchecker(int length, char *map_array, char **mapcpy)
 {
 	char	**map;
 	int		width;
@@ -65,13 +65,9 @@ char	**mapchecker(int length, char *map_array)
 		matrix_free(map, length);
 		return (NULL);
 	}
-	if (possibleWay(map) == -1)
+	if (possibleWay(map, mapcpy) == -1)
 	{
-		matrix_free(map, length);
-		return (NULL);
-	}
-	if (player(map) == -1)
-	{
+		printf("QQQQQ");
 		matrix_free(map, length);
 		return (NULL);
 	}

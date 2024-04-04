@@ -8,6 +8,7 @@ int main()
 {   
     char    *map_name = "map_files/map_0.ber";
 	char	**map;
+	char	**mapcpy;
 	char	*map_array;
 	int		length;
 
@@ -18,9 +19,11 @@ int main()
 	if (map_array == NULL)
 		return (0);
 	length = matrixlength(map_array);
-	map = mapchecker(length, map_array);
+	mapcpy = ft_split(map_array, '\n');
+	map = mapchecker(length, map_array, mapcpy);
 	if (map == NULL)
 	{
+		matrix_free(mapcpy, length);
 		free(map_array);
 		return (0);
 	}

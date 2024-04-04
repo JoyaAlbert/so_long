@@ -5,12 +5,14 @@
 int     nameformat(char *map);
 //maps
 char    **mapchecker(int length, char *map_array);
-int		elementCounter(char **map, int length, int width, char element);
-int		elementchecker(char **map, int length, int width);
+int		elementCounter(char **map, char element);
+int		elementchecker(char **map);
 int		solvableCheck(char	**map, int length, int width);
-int     strangechar(char **map, int length);
-int	    possibleWay(char **map, int length);
+int     strangechar(char **map);
+int	    possibleWay(char **map);
 char	*get_map(char *map_name);
+
+int	player(char **map);
 //matrix
 int	    matrixwidth(char *map_array);
 int	    matrixlength(char *map_array);

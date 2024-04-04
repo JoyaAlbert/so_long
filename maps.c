@@ -55,7 +55,7 @@ char	**mapchecker(int length, char *map_array)
 	if (width == -1)
 		return (NULL);
 	map = ft_split(map_array, '\n');
-	if (strangechar(map, length) == -1)
+	if (strangechar(map) == -1)
 	{
 		matrix_free(map, length);
 		return (NULL);
@@ -65,7 +65,12 @@ char	**mapchecker(int length, char *map_array)
 		matrix_free(map, length);
 		return (NULL);
 	}
-	if (possibleWay(map, length) == -1)
+	if (possibleWay(map) == -1)
+	{
+		matrix_free(map, length);
+		return (NULL);
+	}
+	if (player(map) == -1)
 	{
 		matrix_free(map, length);
 		return (NULL);
@@ -100,18 +105,18 @@ int		solvableCheck(char	**map, int length, int width)
 		}
 		i++;
 	}
-	if (elementchecker(map, length, width) == -1)
+	if (elementchecker(map) == -1)
 		return (-1);
 	return (0);
 }
 
-int strangechar(char **map, int length)
+int strangechar(char **map)
 {
 	int i;
 	int j;
 
 	i = 0;
-	while (i <length)
+	while (map[i])
 	{
 		j = 0;
 		while (map[i][j] != '\0')

@@ -65,9 +65,9 @@ char	**mapchecker(int length, char *map_array, char **mapcpy)
 		matrix_free(map, length);
 		return (NULL);
 	}
-	if (possibleWay(map, mapcpy) == -1)
+	if (player(map, mapcpy) == -1)
 	{
-		printf("QQQQQ");
+		printf("NOT SOLVABLE\n");
 		matrix_free(map, length);
 		return (NULL);
 	}

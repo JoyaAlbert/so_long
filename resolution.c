@@ -41,7 +41,7 @@ int	resolver(char **mapcpy, char **map, int i, int j, int counter)
 	while (mapcpy[i - 1][j] != '1' && mapcpy[i - 1][j] != 'x' )
 	{
 		i--;
-		if (blockedelement(mapcpy, i, j))
+		if (blockedelement(mapcpy, i, j) == -1)
 			deletexs(mapcpy);	
 		if (mapcpy[i][j] == 'C' || mapcpy[i][j] == 'E')
 		{
@@ -59,7 +59,7 @@ int	resolver(char **mapcpy, char **map, int i, int j, int counter)
 	while (mapcpy[i][j -1] != '1' && mapcpy[i][j - 1] != 'x' )
 	{
 		j--;
-		if (blockedelement(mapcpy, i, j))
+		if (blockedelement(mapcpy, i, j) == -1)
 			deletexs(mapcpy);
 		if (mapcpy[i][j] == 'C' || mapcpy[i][j] == 'E')
 		{
@@ -82,7 +82,7 @@ int	resolver(char **mapcpy, char **map, int i, int j, int counter)
 	while (mapcpy[i + 1][j] != '1' && mapcpy[i + 1][j] != 'x' )
 	{
 		i++;
-		if (blockedelement(mapcpy, i, j))
+		if (blockedelement(mapcpy, i, j) == -1)
 			deletexs(mapcpy);
 		if (mapcpy[i][j] == 'C' || mapcpy[i][j] == 'E')
 		{
@@ -104,7 +104,7 @@ int	resolver(char **mapcpy, char **map, int i, int j, int counter)
 	while (mapcpy[i][j + 1] != '1' && mapcpy[i][j +1] != 'x' )
 	{
 		j++;
-		if (blockedelement(mapcpy, i, j))
+		if (blockedelement(mapcpy, i, j) == -1)
 			deletexs(mapcpy);
 		if (mapcpy[i][j] == 'C' || mapcpy[i][j] == 'E')
 		{

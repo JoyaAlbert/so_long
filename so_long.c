@@ -2,11 +2,11 @@
 
 void myleaks()
 {
-	system("leaks -q a.out");
+	system("leaks -q so_long");
 }
 int main()
 {   
-    char    *map_name = "map_files/test.ber";
+    char    *map_name = "map_files/map_0.ber";
 	char	**map;
 	char	**mapcpy;
 	char	*map_array;

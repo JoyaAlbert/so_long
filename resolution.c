@@ -28,39 +28,15 @@ void	deletexs(char **map)
 		i++;
 	}
 }
-
 //revisar patron x1
 //				 xx1
+
 int	resolver(char **mapcpy, char **map, int i, int j, int counter)
 {
 	int	elNum;
 
 	elNum = elementsTofind(map);
 	ft_printf("%d  %d\n", counter, elNum);	
-
-
-	while (mapcpy[i][j -1] != '1' && mapcpy[i][j - 1] != 'x' )
-	{
-		j--;
-		if (blockedelement(mapcpy, i, j) == -1)
-			deletexs(mapcpy);
-		if (mapcpy[i][j] == 'C' || mapcpy[i][j] == 'E')
-		{
-			counter++;
-			mapcpy[i][j] = 'x';
-			deletexs(mapcpy);
-		}
-		else
-			mapcpy[i][j] = 'x';
-		if (counter == elNum)
-			return 0;
-		mapcpy[i][j] = 'x';
-		printm(mapcpy);
-		if (resolver(mapcpy, map, i, j, counter) == -1)
-			return -1;
-		else
-			return (0);
-	}
 
 	while (mapcpy[i - 1][j] != '1' && mapcpy[i - 1][j] != 'x' )
 	{
@@ -79,35 +55,6 @@ int	resolver(char **mapcpy, char **map, int i, int j, int counter)
 			return 0;
 		mapcpy[i][j] = 'x';
 		printm(mapcpy);
-		if (resolver(mapcpy, map, i, j, counter) == -1)
-			return -1;
-		else
-			return (0);
-	}
-
-	
-
-	while (mapcpy[i][j + 1] != '1' && mapcpy[i][j +1] != 'x' )
-	{
-		j++;
-		if (blockedelement(mapcpy, i, j) == -1)
-			deletexs(mapcpy);
-		if (mapcpy[i][j] == 'C' || mapcpy[i][j] == 'E')
-		{
-			counter++;
-			mapcpy[i][j] = 'x';
-			deletexs(mapcpy);
-		}
-		else
-			mapcpy[i][j] = 'x';
-		if (counter == elNum)
-			return 0;
-		mapcpy[i][j] = 'x';
-		printm(mapcpy);
-		if (resolver(mapcpy, map, i, j, counter) == -1)
-			return -1;
-		else
-			return (0);
 	}
 
 	while (mapcpy[i + 1][j] != '1' && mapcpy[i + 1][j] != 'x' )
@@ -132,9 +79,50 @@ int	resolver(char **mapcpy, char **map, int i, int j, int counter)
 			return (0);
 	}
 
-
-
-
+	while (mapcpy[i][j + 1] != '1' && mapcpy[i][j +1] != 'x' )
+	{
+		j++;
+		if (blockedelement(mapcpy, i, j) == -1)
+			deletexs(mapcpy);
+		if (mapcpy[i][j] == 'C' || mapcpy[i][j] == 'E')
+		{
+			counter++;
+			mapcpy[i][j] = 'x';
+			deletexs(mapcpy);
+		}
+		else
+			mapcpy[i][j] = 'x';
+		if (counter == elNum)
+			return 0;
+		mapcpy[i][j] = 'x';
+		printm(mapcpy);
+		if (resolver(mapcpy, map, i, j, counter) == -1)
+			return -1;
+		else
+			return (0);
+	}
+	while (mapcpy[i][j -1] != '1' && mapcpy[i][j - 1] != 'x' )
+	{
+		j--;
+		if (blockedelement(mapcpy, i, j) == -1)
+			deletexs(mapcpy);
+		if (mapcpy[i][j] == 'C' || mapcpy[i][j] == 'E')
+		{
+			counter++;
+			mapcpy[i][j] = 'x';
+			deletexs(mapcpy);
+		}
+		else
+			mapcpy[i][j] = 'x';
+		if (counter == elNum)
+			return 0;
+		mapcpy[i][j] = 'x';
+		printm(mapcpy);
+		if (resolver(mapcpy, map, i, j, counter) == -1)
+			return -1;
+		else
+			return (0);
+	}
 
 	
 	if(counter != elNum)

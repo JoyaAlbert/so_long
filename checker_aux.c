@@ -24,36 +24,11 @@ int	blockedelement(char **map, int i, int j)
 		ncounter++;
 	if(map[i + 1][j] == 'x')
 		ncounter++;
-	if (counter == 3) //|| (ncounter == 2 && counter ==2)
+	if (counter == 3 )//|| (ncounter == 2 && counter ==2))
 		return (-1);
 	return (0);
 }
 
-int	possibleWay(char **map, char **mapcpy)
-{
-	/*int i;
-	int j;
-
-	i = 0;
-	while(map[i])
-	{
-		j = 0;
-		while (map[i][j] != '\0')
-		{
-			if(map[i][j] == 'C' || map[i][j] == 'E' || map[i][j] == 'P')
-			{
-				if (blockedelement(map, i, j) == -1)
-				{
-					ft_printf("NOT SOLVABLE\n");
-					return (-1);
-				}
-			}
-			j++;
-		}
-		i++;
-	}*/
-	return (player(map, mapcpy));
-}
 int		elementCounter(char **map, char element)
 {
 	int	i;

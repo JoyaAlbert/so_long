@@ -10,27 +10,119 @@ void printm(char	**a)
 	}
 	ft_printf("\n");
 }
-void	deletexs(char **map)
+int	left(int i, int j, int a, char **mapcpy, int counter)
+{
+		while (mapcpy[i][j] != '1')
+		{
+			a = i;
+			while (a > 0 && mapcpy[a][j] != '1')
+			{
+				if(mapcpy[a][j] == 'C' || mapcpy[a][j] == 'E')
+					counter++;
+				mapcpy[a][j] = 'x';
+				a--;
+			}
+			a = i;
+			while (mapcpy[a] && mapcpy[a][j] != '1')
+			{
+				if(mapcpy[a][j] == 'C' || mapcpy[a][j] == 'E')
+					counter ++;
+				mapcpy[a][j] = 'x';
+				a++;
+			}
+			printm(mapcpy);
+			j--;
+		}
+	return (counter);
+}
+int	right(int i, int j, int a, char **mapcpy, int counter)
+{
+		while (mapcpy[i][j] != '1')
+		{
+			a = i;
+			while (a > 0 && mapcpy[a][j] != '1')
+			{
+				if(mapcpy[a][j] == 'C' || mapcpy[a][j] == 'E')
+					counter++;
+				mapcpy[a][j] = 'x';
+				a--;
+			}
+			a = i;
+			while (mapcpy[a] != NULL && mapcpy[a][j] != '1')
+			{
+				if(mapcpy[a][j] == 'C' || mapcpy[a][j] == 'E')
+					counter++;
+				mapcpy[a][j] = 'x';
+				a++;
+			}
+			printm(mapcpy);
+			j++;
+		}
+	return (counter);
+}
+int	resolver(char **mapcpy, char **map, int i, int j)
+{
+	int counter;
+	int a;
+	int b;
+	counter = 0;
+	a = i;
+	b = 0;
+	while (mapcpy[i] != NULL)
+	{
+		b  = right(i, j, a, mapcpy, counter);
+		if (b != counter)
+			counter = b;
+		b  = left(i, j, a, mapcpy, counter);
+		if (b != counter)
+			counter = b;
+		i++;
+	}
+		printm(mapcpy);
+	i = a;
+	while (i >= 0)
+	{
+		b  = right(i, j, a, mapcpy, counter);
+		if (b != counter)
+			counter = b;
+		b  = left(i, j, a, mapcpy, counter);
+		if (b != counter)
+			counter = b;
+		i--;
+	}
+	printf("\n\n%d   %d\n", counter, elementsTofind(map));
+	if (counter != elementsTofind(map))
+		return -1;
+	return 0;
+
+}
+
+
+int	player(char **map, char **mapcpy)
 {
 	int i;
-	int	j;
-
+	int j;
 	i = 0;
-	while(map[i])
+	j = 0;
+
+	printm(mapcpy);
+	i = 0;
+	while (map[i] != NULL)
 	{
 		j = 0;
-		while(map[i][j] != '\0')
+		while  (map[i][j] != '\0')
 		{
-			if (map[i][j] == 'x')
-				map[i][j] = '0';
+			if (map[i][j] == 'P')
+				return (resolver(mapcpy, map, i, j));
 			j++;
 		}
 		i++;
 	}
+	return (0);
 }
 //revisar patron x1
 //				 xx1
-
+/*
 int	resolver(char **mapcpy, char **map, int i, int j, int counter)
 {
 	int	elNum;
@@ -128,27 +220,4 @@ int	resolver(char **mapcpy, char **map, int i, int j, int counter)
 	if(counter != elNum)
 		return -1;
 	return 0;
-}
-
-int	player(char **map, char **mapcpy)
-{
-	int i;
-	int j;
-	int	counter;
-
-	printm(mapcpy);
-	counter  = 0;
-	i = 0;
-	while (map[i] != NULL)
-	{
-		j = 0;
-		while  (map[i][j] != '\0')
-		{
-			if (map[i][j] == 'P')
-				return (resolver(mapcpy, map, i, j, counter));
-			j++;
-		}
-		i++;
-	}
-	return (0);
-}
+}*/

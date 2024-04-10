@@ -19,5 +19,4 @@ int	    matrixwidth(char *map_array);
 int	    matrixlength(char *map_array);
 void    matrix_free(char **map, int length);
 char	**ft_split(char *s, char c);
-
-int	resolver(char **mapcpy, char **map, int i, int j, int counter);
+int	resolver(char **mapcpy, char **map, int i, int j);

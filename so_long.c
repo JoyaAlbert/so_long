@@ -13,7 +13,7 @@ int main(int argc, char **argv)
 
 	atexit(myleaks);
 	if (argc != 2)
-		return NULL;
+		return -1;
 	if (nameformat(argv[1]) == -1)
 		return (0);
 	map_array = get_map(argv[1]);

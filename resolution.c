@@ -10,6 +10,7 @@ void printm(char	**a)
 	}
 	ft_printf("\n");
 }
+
 int	left(int i, int j, int a, char **mapcpy, int counter)
 {
 		while (mapcpy[i][j] != '1')
@@ -21,6 +22,8 @@ int	left(int i, int j, int a, char **mapcpy, int counter)
 					counter++;
 				mapcpy[a][j] = 'x';
 				a--;
+				counter = left(i, j, a, mapcpy, counter);
+				counter = right(i, j, a, mapcpy, counter);
 			}
 			a = i;
 			while (mapcpy[a] && mapcpy[a][j] != '1')
@@ -28,6 +31,8 @@ int	left(int i, int j, int a, char **mapcpy, int counter)
 				if(mapcpy[a][j] == 'C' || mapcpy[a][j] == 'E')
 					counter ++;
 				mapcpy[a][j] = 'x';
+				counter = left(i, j, a, mapcpy, counter);
+				counter = right(i, j, a, mapcpy, counter);
 				a++;
 			}
 			printm(mapcpy);
@@ -46,6 +51,8 @@ int	right(int i, int j, int a, char **mapcpy, int counter)
 					counter++;
 				mapcpy[a][j] = 'x';
 				a--;
+				counter = right(i, j, a, mapcpy, counter);
+				counter = left(i, j, a, mapcpy, counter);
 			}
 			a = i;
 			while (mapcpy[a] != NULL && mapcpy[a][j] != '1')
@@ -54,20 +61,19 @@ int	right(int i, int j, int a, char **mapcpy, int counter)
 					counter++;
 				mapcpy[a][j] = 'x';
 				a++;
+				counter = right(i, j, a, mapcpy, counter);
+				counter = left(i, j, a, mapcpy, counter);
 			}
 			printm(mapcpy);
 			j++;
 		}
 	return (counter);
 }
-int	resolver(char **mapcpy, char **map, int i, int j)
+
+int up(int i, int j, int a, char **mapcpy, int counter)
 {
-	int counter;
-	int a;
-	int b;
-	counter = 0;
-	a = i;
-	b = 0;
+	int	b;
+
 	while (mapcpy[i] != NULL)
 	{
 		b  = right(i, j, a, mapcpy, counter);
@@ -78,8 +84,13 @@ int	resolver(char **mapcpy, char **map, int i, int j)
 			counter = b;
 		i++;
 	}
-		printm(mapcpy);
-	i = a;
+	return (b);
+}
+int	down(int i, int j, int a, char **mapcpy, int counter)
+{
+	int b;
+
+	b = 0;
 	while (i >= 0)
 	{
 		b  = right(i, j, a, mapcpy, counter);
@@ -90,7 +101,17 @@ int	resolver(char **mapcpy, char **map, int i, int j)
 			counter = b;
 		i--;
 	}
-	printf("\n\n%d   %d\n", counter, elementsTofind(map));
+	return (counter);
+}
+int	resolver(char **mapcpy, char **map, int i, int j)
+{
+	int counter;
+	int a;
+
+	counter = 0;
+	a = i;
+	counter = up(i, j, a, mapcpy, counter);
+	counter = down(i, j, a, mapcpy, counter);
 	if (counter != elementsTofind(map))
 		return -1;
 	return 0;

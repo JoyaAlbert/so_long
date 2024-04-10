@@ -20,3 +20,6 @@ int	    matrixlength(char *map_array);
 void    matrix_free(char **map, int length);
 char	**ft_split(char *s, char c);
 int	resolver(char **mapcpy, char **map, int i, int j);
+
+int	right(int i, int j, int a, char **mapcpy, int counter);
+int	left(int i, int j, int a, char **mapcpy, int counter);

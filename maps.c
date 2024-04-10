@@ -9,7 +9,7 @@ char	*get_map(char *map_name)
 	fd = open(map_name, O_RDONLY);
 	if (fd == -1)
 	{
-		ft_printf("error opening the file\n");
+		ft_printf("Error opening the file\n");
 		return (NULL);
 	}
 	map_array = malloc(1);

@@ -4,18 +4,19 @@ void myleaks()
 {
 	system("leaks -q so_long");
 }
-int main()
+int main(int argc, char **argv)
 {   
-    char    *map_name = "map_files/map_0.ber";
 	char	**map;
 	char	**mapcpy;
 	char	*map_array;
 	int		length;
 
 	atexit(myleaks);
-	if (nameformat(map_name) == -1)
+	if (argc != 2)
+		return NULL;
+	if (nameformat(argv[1]) == -1)
 		return (0);
-	map_array = get_map(map_name);
+	map_array = get_map(argv[1]);
 	if (map_array == NULL)
 		return (0);
 	length = matrixlength(map_array);

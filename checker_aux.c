@@ -24,7 +24,7 @@ int	blockedelement(char **map, int i, int j)
 		ncounter++;
 	if(map[i + 1][j] == 'x')
 		ncounter++;
-	if (counter == 3 )//|| (ncounter == 2 && counter ==2))
+	if (counter == 3 )
 		return (-1);
 	return (0);
 }

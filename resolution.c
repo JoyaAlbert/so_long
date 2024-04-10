@@ -22,8 +22,6 @@ int	left(int i, int j, int a, char **mapcpy, int counter)
 					counter++;
 				mapcpy[a][j] = 'x';
 				a--;
-				counter = left(i, j, a, mapcpy, counter);
-				counter = right(i, j, a, mapcpy, counter);
 			}
 			a = i;
 			while (mapcpy[a] && mapcpy[a][j] != '1')
@@ -31,8 +29,6 @@ int	left(int i, int j, int a, char **mapcpy, int counter)
 				if(mapcpy[a][j] == 'C' || mapcpy[a][j] == 'E')
 					counter ++;
 				mapcpy[a][j] = 'x';
-				counter = left(i, j, a, mapcpy, counter);
-				counter = right(i, j, a, mapcpy, counter);
 				a++;
 			}
 			printm(mapcpy);
@@ -51,8 +47,6 @@ int	right(int i, int j, int a, char **mapcpy, int counter)
 					counter++;
 				mapcpy[a][j] = 'x';
 				a--;
-				counter = right(i, j, a, mapcpy, counter);
-				counter = left(i, j, a, mapcpy, counter);
 			}
 			a = i;
 			while (mapcpy[a] != NULL && mapcpy[a][j] != '1')
@@ -61,8 +55,6 @@ int	right(int i, int j, int a, char **mapcpy, int counter)
 					counter++;
 				mapcpy[a][j] = 'x';
 				a++;
-				counter = right(i, j, a, mapcpy, counter);
-				counter = left(i, j, a, mapcpy, counter);
 			}
 			printm(mapcpy);
 			j++;
@@ -103,6 +95,32 @@ int	down(int i, int j, int a, char **mapcpy, int counter)
 	}
 	return (counter);
 }
+
+int	lastcheck(int i, int j, int a, char **mapcpy, int counter)
+{
+	while(mapcpy[i])
+	{
+		j = 1;
+		while(mapcpy[i][j] != '\0')
+		{
+			if(mapcpy[i][j] == 'x' &&
+				(mapcpy[i][j+1] != '1' && mapcpy[i][j+1] != 'x'))
+				counter = right(i, j, a, mapcpy, counter);
+			if(mapcpy[i][j] == 'x'&&
+				(mapcpy[i][j-1] != '1' && mapcpy[i][j-1] != 'x'))
+				counter = left(i, j, a, mapcpy, counter);
+			if(mapcpy[i][j] == 'x'&&
+				(mapcpy[i-1][j] != '1' && mapcpy[i-1][j] != 'x'))
+				counter = up(i, j, a, mapcpy, counter);
+			if(mapcpy[i][j] == 'x'&&
+				(mapcpy[i+1][j+1] != '1' && mapcpy[i+1][j] != 'x'))
+				counter = down(i, j, a, mapcpy, counter);
+			j++;
+		}
+		i++;
+	}
+	return (counter);
+}
 int	resolver(char **mapcpy, char **map, int i, int j)
 {
 	int counter;
@@ -112,10 +130,12 @@ int	resolver(char **mapcpy, char **map, int i, int j)
 	a = i;
 	counter = up(i, j, a, mapcpy, counter);
 	counter = down(i, j, a, mapcpy, counter);
+	i = 0;
+	j = 0;
+	counter = lastcheck(i, j, a, mapcpy, counter);
 	if (counter != elementsTofind(map))
 		return -1;
 	return 0;
-
 }
 
 
@@ -141,104 +161,3 @@ int	player(char **map, char **mapcpy)
 	}
 	return (0);
 }
-//revisar patron x1
-//				 xx1
-/*
-int	resolver(char **mapcpy, char **map, int i, int j, int counter)
-{
-	int	elNum;
-
-	elNum = elementsTofind(map);
-	ft_printf("%d  %d\n", counter, elNum);	
-
-	while (mapcpy[i - 1][j] != '1' && mapcpy[i - 1][j] != 'x' )
-	{
-		i--;
-		if (blockedelement(mapcpy, i, j) == -1)
-			deletexs(mapcpy);	
-		if (mapcpy[i][j] == 'C' || mapcpy[i][j] == 'E')
-		{
-			counter++;
-			mapcpy[i][j] = 'x';
-			deletexs(mapcpy);
-		}
-		else
-			mapcpy[i][j] = 'x';
-		if (counter == elNum)
-			return 0;
-		mapcpy[i][j] = 'x';
-		printm(mapcpy);
-	}
-
-	while (mapcpy[i + 1][j] != '1' && mapcpy[i + 1][j] != 'x' )
-	{
-		i++;
-		if (blockedelement(mapcpy, i, j) == -1)
-			deletexs(mapcpy);
-		if (mapcpy[i][j] == 'C' || mapcpy[i][j] == 'E')
-		{
-			counter++;
-			mapcpy[i][j] = 'x';
-			deletexs(mapcpy);
-		}
-		else
-			mapcpy[i][j] = 'x';
-		if (counter == elNum)
-			return 0;
-		printm(mapcpy);
-		if (resolver(mapcpy, map, i, j, counter) == -1)
-			return -1;
-		else
-			return (0);
-	}
-
-	while (mapcpy[i][j + 1] != '1' && mapcpy[i][j +1] != 'x' )
-	{
-		j++;
-		if (blockedelement(mapcpy, i, j) == -1)
-			deletexs(mapcpy);
-		if (mapcpy[i][j] == 'C' || mapcpy[i][j] == 'E')
-		{
-			counter++;
-			mapcpy[i][j] = 'x';
-			deletexs(mapcpy);
-		}
-		else
-			mapcpy[i][j] = 'x';
-		if (counter == elNum)
-			return 0;
-		mapcpy[i][j] = 'x';
-		printm(mapcpy);
-		if (resolver(mapcpy, map, i, j, counter) == -1)
-			return -1;
-		else
-			return (0);
-	}
-	while (mapcpy[i][j -1] != '1' && mapcpy[i][j - 1] != 'x' )
-	{
-		j--;
-		if (blockedelement(mapcpy, i, j) == -1)
-			deletexs(mapcpy);
-		if (mapcpy[i][j] == 'C' || mapcpy[i][j] == 'E')
-		{
-			counter++;
-			mapcpy[i][j] = 'x';
-			deletexs(mapcpy);
-		}
-		else
-			mapcpy[i][j] = 'x';
-		if (counter == elNum)
-			return 0;
-		mapcpy[i][j] = 'x';
-		printm(mapcpy);
-		if (resolver(mapcpy, map, i, j, counter) == -1)
-			return -1;
-		else
-			return (0);
-	}
-
-	
-	if(counter != elNum)
-		return -1;
-	return 0;
-}*/

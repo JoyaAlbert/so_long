@@ -26,13 +26,19 @@ char	*get_map(char *map_name)
 	close (fd);
 	return (map_array);
 }
-int	nameformat(char *map)
+int	nameformat(char *map, int argc)
 {
 	int i;
 	char *format;
 	
 	format = ".ber";
 	i = 0;
+	if (argc != 2)
+	{
+		ft_printf("To play -> ./so_long 'map file'\n");
+		return (-1);
+	}
+	
 	while (i <= 3)
 	{
 		if(map[ft_strlen(map) -1 -i] == format[ft_strlen(format)-1-i])

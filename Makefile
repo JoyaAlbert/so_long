@@ -1,7 +1,7 @@
 SRC				=	gnl/get_next_line.c gnl/get_next_line_utils.c printf/ft_printf.c printf/ft_printf_utils.c printf/ft_printf_scdi.c printf/ft_printf_u.c printf/ft_printf_x.c printf/ft_printf_p.c \
-					matrix.c maps.c checker_aux.c map_split.c resolution.c resolution_aux.c so_long.c
+					matrix.c maps.c checker_aux.c map_split.c resolution.c resolution_aux.c so_long.c 
 GCC 			=	gcc
-CFLAGS			=	-Wall -Wextra -Werror
+CFLAGS			=	-lX11 -lXext -Wall -Wextra -Werror
 OBJ				=	$(SRC:.c=.o)
 NAME			=	so_long
 
@@ -15,7 +15,7 @@ CYAN 		:= \033[1;36m
 $(NAME):		$(OBJ)
 				@clear
 				@echo "$(GREEN)Compilation ${CLR_RMV}of ${YELLOW}$(NAME) ${CYAN}"
-				$(GCC) $(FLAGS) -o $(NAME) $(OBJ)
+				$(GCC)  $(FLAGS) -o $(NAME) $(OBJ)
 
 
 all:			$(NAME)

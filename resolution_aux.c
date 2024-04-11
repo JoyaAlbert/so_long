@@ -55,7 +55,7 @@ int up(int i, int j, int a, char **mapcpy, int counter)
 {
 	int	b;
 
-	while (mapcpy[i] != NULL)
+	while (mapcpy[i] != NULL && mapcpy[i][j] != '1')
 	{
 		b  = right(i, j, a, mapcpy, counter);
 		if (b != counter)
@@ -72,7 +72,7 @@ int	down(int i, int j, int a, char **mapcpy, int counter)
 	int b;
 
 	b = 0;
-	while (i >= 0)
+	while (i >= 0 && mapcpy[i][j] != '1')
 	{
 		b  = right(i, j, a, mapcpy, counter);
 		if (b != counter)
@@ -87,9 +87,12 @@ int	down(int i, int j, int a, char **mapcpy, int counter)
 
 int	lastcheck(int i, int j, int a, char **mapcpy, int counter)
 {
+	int b;
+
+	b = j;
 	while(mapcpy[i])
 	{
-		j = 1;
+		j = b;
 		while(mapcpy[i][j] != '\0')
 		{
 			if(mapcpy[i][j] == 'x' &&

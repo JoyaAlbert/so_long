@@ -13,7 +13,10 @@ void    textureinits(t_list *a)
 	a->escape = mlx_xpm_file_to_image(a->mlx, "textures/e.xpm", &w, &h);
 	a->escape_p = mlx_xpm_file_to_image(a->mlx, "textures/e_p.xpm", &w, &h);
 	a->wall = mlx_xpm_file_to_image(a->mlx, "textures/1.xpm", &w, &h);;
-	a->player = mlx_xpm_file_to_image(a->mlx, "textures/p.xpm", &w, &h);
+	a->player = mlx_xpm_file_to_image(a->mlx, "textures/down.xpm", &w, &h);
+	a->player_u = mlx_xpm_file_to_image(a->mlx, "textures/up.xpm", &w, &h);
+	a->player_r = mlx_xpm_file_to_image(a->mlx, "textures/right.xpm", &w, &h);
+	a->player_l = mlx_xpm_file_to_image(a->mlx, "textures/left.xpm", &w, &h);
 }
 
 void	player_hor(int x, int y, t_list *a)
@@ -26,6 +29,8 @@ void	player_hor(int x, int y, t_list *a)
 		mlx_put_image_to_window (a->mlx, a->win, a->player_r, x, y);
 	if (a->mv_l != a->fixed_l)
 		mlx_put_image_to_window (a->mlx, a->win, a->player_l, x, y);
+	if (a->mv_d == 0 && a->mv_r == 0 && a->mv_u == 0 && a->mv_l == 0)
+		mlx_put_image_to_window (a->mlx, a->win, a->player, x, y);
 	a->fixed_d = a->mv_d;
 	a->fixed_u = a->mv_u;
 	a->fixed_r = a->mv_r;
@@ -50,7 +55,7 @@ void putinpos(char c, int i, int j, t_list *a)
 		mlx_put_image_to_window (a->mlx, a->win, a->escape, x, y);
 	}
 	else if (c == 'P')
-	  mlx_put_image_to_window (a->mlx, a->win, a->player, x, y);
+	  player_hor(x, y, a);
 	else if (c == '0')
 	  mlx_put_image_to_window (a->mlx, a->win, a->grnd, x, y);
 }
@@ -75,10 +80,10 @@ void putimgs(t_list *a)
 				putinpos('P' ,i, j, a);
 			else if (a->map[i][j] == 'E')
 				putinpos('E' ,i, j, a);
-			else
-				exit(0);
 			j++;
 		}
 		i++;
 	}
+	mlx_string_put(a->mlx, a->win, 10, 25, 0x00, "Number of moves->");
+	mlx_string_put(a->mlx, a->win,125, 25, 0x00, ft_itoa(a->moves));
 }

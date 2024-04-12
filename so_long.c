@@ -6,6 +6,7 @@ void myleaks()
 {
 	system("leaks -q so_long");
 }
+
 int mlx_start(t_list *a)
 {
 	int x;
@@ -17,6 +18,7 @@ int mlx_start(t_list *a)
 	textureinits(a);
 	a->win = mlx_new_window(a->mlx, x, y, "So Long");
 	putimgs(a);
+	mlx_key_hook(a->win, inputs, a);
 	mlx_loop(a->mlx);
 	return 0;
 }
@@ -26,6 +28,9 @@ void data_taking(t_list *a, char *map_array, char **map)
 	a->map = map;
 	a->l = matrixlength(map_array);
 	a->w = matrixwidth(map_array);
+	a->col_obt = 0;
+	a->moves = 0;
+	a->total_col = elementsTofind(a->map) -1;	
 }
 int errors_parsing(char **argv, int argc, t_list *a)
 {
@@ -52,6 +57,11 @@ int errors_parsing(char **argv, int argc, t_list *a)
 	free(map_array);
 	return 1;
 }
+void ft_frees(t_list *a)
+{
+	matrix_free(a->map, a->l -1);
+	free(a->map_array);
+}
 int main(int argc, char **argv)
 {   
 	t_list *a;
@@ -63,7 +73,5 @@ int main(int argc, char **argv)
 	if (errors_parsing(argv, argc, a) == 0)
 		return 0;
 	mlx_start(a);
-	matrix_free(a->map, a->l -1);
-	free(a->map_array);
 	return (0);
 }

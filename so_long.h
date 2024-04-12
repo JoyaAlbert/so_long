@@ -16,6 +16,13 @@ typedef struct data_list
 	char	**map;
 	int 	l;
 	int		w;
+	int		moves;
+	int		total_col;
+	int 	p_y;
+	int		p_x;
+	int 	e_y;
+	int		e_x;
+	int		col_obt;
 	void 	*wall;
 	void	*col;
 	void	*escape;
@@ -54,7 +61,10 @@ int	lastcheck(int i, int j, int a, char **mapcpy, int counter);
 void printm(char	**a);
 //GRAFICOOOOS
 
-
 void    textureinits(t_list *a);
 void putimgs(t_list *a);
+
+//logicaa
+int inputs();
+void ft_frees(t_list *a);
 #endif

@@ -16,18 +16,31 @@ typedef struct data_list
 	char	**map;
 	int 	l;
 	int		w;
-	int		moves;
-	int		total_col;
 	int 	p_y;
 	int		p_x;
 	int 	e_y;
 	int		e_x;
+	int		moves;
+	int		mv_u;
+	int		mv_d;
+	int		mv_r;
+	int		mv_l;
+	int		fixed_u;
+	int		fixed_d;
+	int		fixed_r;
+	int		fixed_l;
+	int		total_col;
 	int		col_obt;
 	void 	*wall;
 	void	*col;
 	void	*escape;
+	void	*escape_p;
 	void	*player;
+	void	*player_u;
+	void	*player_r;
+	void	*player_l;
 	void	*grnd;
+	void	*banner;
 } t_list;
 
 
@@ -67,4 +80,6 @@ void putimgs(t_list *a);
 //logicaa
 int inputs();
 void ft_frees(t_list *a);
+void	e_pos(t_list *a);
+void	p_pos(t_list *a);
 #endif

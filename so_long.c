@@ -30,7 +30,16 @@ void data_taking(t_list *a, char *map_array, char **map)
 	a->w = matrixwidth(map_array);
 	a->col_obt = 0;
 	a->moves = 0;
-	a->total_col = elementsTofind(a->map) -1;	
+	a->total_col = elementsTofind(a->map) -1;
+	a->fixed_d =  0;
+	a->mv_d = 0;
+	a->fixed_u = 0;
+	a->mv_u = 0;
+	a->fixed_r = 0;
+	a->mv_r = 0;
+	a->fixed_l = 0;
+	a->mv_l = 0;
+	e_pos(a);
 }
 int errors_parsing(char **argv, int argc, t_list *a)
 {

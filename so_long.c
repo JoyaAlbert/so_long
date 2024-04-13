@@ -2,15 +2,15 @@
 #include "mlx/mlx.h"
 
 // to compile cc *.c printf/*.c gnl/*.c mlx/libmlx.a -lX11 -lXext
-void myleaks()
+void	myleaks(void)
 {
 	system("leaks -q so_long");
 }
 
-int mlx_start(t_list *a)
+int	mlx_start(t_list *a)
 {
-	int x;
-	int y;
+	int	x;
+	int	y;
 
 	x = (a->w -1) * 50;
 	y = (a->l) * 50;
@@ -20,9 +20,10 @@ int mlx_start(t_list *a)
 	putimgs(a);
 	mlx_key_hook(a->win, inputs, a);
 	mlx_loop(a->mlx);
-	return 0;
+	return (0);
 }
-void data_taking(t_list *a, char *map_array, char **map)
+
+void	data_taking(t_list *a, char *map_array, char **map)
 {
 	a->map_array = map_array;
 	a->map = map;
@@ -30,8 +31,8 @@ void data_taking(t_list *a, char *map_array, char **map)
 	a->w = matrixwidth(map_array);
 	a->col_obt = 0;
 	a->moves = 0;
-	a->total_col = elementsTofind(a->map) -1;
-	a->fixed_d =  0;
+	a->total_col = elementsTofind(a->map) - 1;
+	a->fixed_d = 0;
 	a->mv_d = 0;
 	a->fixed_u = 0;
 	a->mv_u = 0;
@@ -41,12 +42,14 @@ void data_taking(t_list *a, char *map_array, char **map)
 	a->mv_l = 0;
 	e_pos(a);
 }
-int errors_parsing(char **argv, int argc, t_list *a)
+
+int	errors_parsing(char **argv, int argc, t_list *a)
 {
 	char	**map;
 	char	**mapcpy;
 	char	*map_array;
 	int		length;
+
 	if (nameformat(argv[1], argc) == -1)
 		return (0);
 	map_array = get_map(argv[1]);
@@ -64,23 +67,25 @@ int errors_parsing(char **argv, int argc, t_list *a)
 	data_taking(a, map_array, map);
 	matrix_free(mapcpy, length);
 	free(map_array);
-	return 1;
+	return (1);
 }
-void ft_frees(t_list *a)
+
+void	ft_frees(t_list *a)
 {
 	matrix_free(a->map, a->l -1);
 	free(a->map_array);
 }
-int main(int argc, char **argv)
-{   
-	t_list *a;
+
+int	main(int argc, char **argv)
+{
+	t_list	*a;
 
 	a = ft_calloc(1, sizeof(t_list));
 	if (!a)
 		return (0);
 	atexit(myleaks);
 	if (errors_parsing(argv, argc, a) == 0)
-		return 0;
+		return (0);
 	mlx_start(a);
 	return (0);
 }

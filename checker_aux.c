@@ -1,6 +1,5 @@
 #include "so_long.h"
-
-
+/*
 int	blockedelement(char **map, int i, int j)
 {
 	int	counter;
@@ -27,9 +26,9 @@ int	blockedelement(char **map, int i, int j)
 	if (counter == 3 )
 		return (-1);
 	return (0);
-}
+}*/
 
-int		elementCounter(char **map, char element)
+int	elementCounter(char **map, char element)
 {
 	int	i;
 	int	j;
@@ -50,7 +49,8 @@ int		elementCounter(char **map, char element)
 	}
 	return (counter);
 }
-int		elementchecker(char **map)
+
+int	elementchecker(char **map)
 {
 	if (elementCounter(map, 'P') != 1)
 	{
@@ -86,7 +86,7 @@ int elementsTofind(char **map)
 	while (map[i] != NULL)
 	{
 		j = 0;
-		while  (map[i][j] != '\0')
+		while (map[i][j] != '\0')
 		{
 			if (map[i][j] == 'C' || map[i][j] == 'E')
 				counter++;
@@ -96,4 +96,3 @@ int elementsTofind(char **map)
 	}
 	return (counter);
 }
-

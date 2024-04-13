@@ -19,18 +19,19 @@ char	*get_map(char *map_name)
 	{
 		aux = get_next_line(fd);
 		if (!aux)
-			break;
+			break ;
 		map_array = ft_strjoin(map_array, aux);
 		free(aux);
 	}
 	close (fd);
 	return (map_array);
 }
+
 int	nameformat(char *map, int argc)
 {
-	int i;
-	char *format;
-	
+	int		i;
+	char	*format;
+
 	format = ".ber";
 	i = 0;
 	if (argc != 2)
@@ -38,18 +39,17 @@ int	nameformat(char *map, int argc)
 		ft_printf("To play -> ./so_long 'map file'\n");
 		return (-1);
 	}
-	
 	while (i <= 3)
 	{
-		if(map[ft_strlen(map) -1 -i] == format[ft_strlen(format)-1-i])
-            i++;
-        else
+		if (map[ft_strlen(map) - 1 - i] == format[ft_strlen(format) - 1 - i])
+			i++;
+		else
 		{
 			ft_printf("must be a .ber file\n");
 			return (-1);
 		}
 	}
-	return 1;
+	return (1);
 }
 
 char	**mapchecker(int length, char *map_array, char **mapcpy)
@@ -81,11 +81,9 @@ char	**mapchecker(int length, char *map_array, char **mapcpy)
 	return (map);
 }
 
-
-
-int		solvableCheck(char	**map, int length, int width)
+int	solvableCheck(char	**map, int length, int width)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < length)
@@ -97,10 +95,10 @@ int		solvableCheck(char	**map, int length, int width)
 		}
 		i++;
 	}
-	i = 0;	
-	while (i <  width)
+	i = 0;
+	while (i < width)
 	{
-		if(map[0][i] != '1' || map[length -1][i] != '1')
+		if (map[0][i] != '1' || map[length -1][i] != '1')
 		{
 			ft_printf("NOT CLOSED BY WALLS\n");
 			return (-1);
@@ -112,10 +110,10 @@ int		solvableCheck(char	**map, int length, int width)
 	return (0);
 }
 
-int strangechar(char **map)
+int	strangechar(char **map)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	while (map[i])
@@ -127,12 +125,11 @@ int strangechar(char **map)
 				&& map[i][j] != 'E' && map[i][j] != 'C')
 			{
 				ft_printf("STRANGE CHARACTER\n");
-				return(-1);
-
+				return (-1);
 			}
 			j++;
 		}
 		i++;
 	}
-	return(0);
+	return (0);
 }

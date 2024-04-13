@@ -30,7 +30,7 @@ int	matrixwidth(char *map)
 
 int	matrixlength(char *map)
 {
-	int i;
+	int	i;
 	int	counter;
 
 	i = 0;
@@ -44,7 +44,7 @@ int	matrixlength(char *map)
 	return (counter + 1);
 }
 
-void matrix_free(char **map, int i)
+void	matrix_free(char **map, int i)
 {
 	while (i >= 0)
 	{
@@ -53,6 +53,7 @@ void matrix_free(char **map, int i)
 	}
 	free(map);
 }
+
 void	*ft_calloc(size_t count, size_t size)
 {
 	void	*p;

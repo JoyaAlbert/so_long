@@ -3,6 +3,7 @@
 
 # include "gnl/get_next_line.h"
 # include "printf/ft_printf.h"
+//# include "mlx/mlx.h"
 # include <stdio.h>
 # include <unistd.h>
 # include <sys/wait.h>

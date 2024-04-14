@@ -84,5 +84,5 @@ int		inputs(int inputs, t_list *a);
 void	ft_frees(t_list *a);
 void	e_pos(t_list *a);
 void	p_pos(t_list *a);
-int	exitcheck(t_list *a);
+int		exitcheck(t_list *a);
 #endif

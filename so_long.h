@@ -42,9 +42,15 @@ typedef struct data_list
 	void	*banner;
 }	t_list;
 
+typedef struct resolution_data
+{
+	int		counter;
+	char	**mapcpy;
+}	t_reso;
+
 int		nameformat(char *map, int argc);
 //maps
-char	**mapchecker(int length, char *map_array, char **mapcpy);
+char	**mapchecker(int length, char *map_array, t_reso *reso);
 int		elementCounter(char **map, char element);
 int		elementchecker(char **map);
 int		solvableCheck(char	**map, int length, int width);
@@ -52,8 +58,7 @@ int		strangechar(char **map);
 int		possibleWay(char **map, char **mapcpy);
 char	*get_map(char *map_name);
 int		elementsTofind(char **map);
-int		player(char **map, char **mapcpy);
-int		blockedelement(char **map, int i, int j);
+int		player(char **map, t_reso *reso);
 //matrix
 int		matrixwidth(char *map_array);
 int		matrixlength(char *map_array);
@@ -62,12 +67,12 @@ char	**ft_split(char *s, char c);
 void	*ft_calloc(size_t count, size_t size);
 void	ft_bzero(void *s, size_t n);
 //solution
-int		resolution(char **mapcpy, char **map, int i, int j);
-int		right(int i, int j, int a, char **mapcpy, int counter);
-int		left(int i, int j, int a, char **mapcpy, int counter);
-int		up(int i, int j, int a, char **mapcpy, int counter);
-int		down(int i, int j, int a, char **mapcpy, int counter);
-int		lastcheck(int i, int j, int a, char **mapcpy, int counter);
+int		resolution(t_reso *reso, char **map, int i, int j);
+int		right(int i, int j, int a, t_reso *reso);
+int		left(int i, int j, int a, t_reso *reso);
+int		up(int i, int j, int a, t_reso *reso);
+int		down(int i, int j, int a, t_reso *reso);
+int		lastcheck(int i, int j, int a, t_reso *res);
 void	printm(char	**a);
 //GRAFICOOOOS
 

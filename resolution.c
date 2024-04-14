@@ -1,9 +1,11 @@
 #include "so_long.h"
 
-void printm(char	**a)
+void	printm(char **a)
 {
-	int i = 0;
-	while(a[i] != NULL)
+	int	i;
+
+	i = 0;
+	while (a[i] != NULL)
 	{
 		ft_printf("%s\n", a[i]);
 		i++;
@@ -11,45 +13,45 @@ void printm(char	**a)
 	ft_printf("\n");
 }
 
-int	resolution(char **mapcpy, char **map, int i, int j)
+int	resolution(t_reso *reso, char **map, int i, int j)
 {
-	int counter;
-	int a;
+	int	a;
 
-	counter = 0;
+	reso->counter = 0;
 	a = i;
-	counter = up(i, j, a, mapcpy, counter);
-	counter = down(i, j, a, mapcpy, counter);
+	reso->counter = up(i, j, a, reso);
+	reso->counter = down(i, j, a, reso);
 	i = 0;
-	counter = lastcheck(i, j, a, mapcpy, counter);
-	if (counter != elementsTofind(map))
-		return -1;
-	return 0;
+	reso->counter = lastcheck(i, j, a, reso);
+	printf("%d\n", reso->counter);
+	if (reso->counter != elementsTofind(map))
+		return (-1);
+	return (0);
 }
 
-
-int	player(char **map, char **mapcpy)
+int	player(char **map, t_reso *reso)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
+
 	i = 0;
 	j = 0;
-
-	printm(mapcpy);
+	printm(reso->mapcpy);
 	i = 0;
 	while (map[i] != NULL)
 	{
 		j = 0;
-		while  (map[i][j] != '\0')
+		while (map[i][j] != '\0')
 		{
 			if (map[i][j] == 'P')
-				return (resolution(mapcpy, map, i, j));
+				return (resolution(reso, map, i, j));
 			j++;
 		}
 		i++;
 	}
 	return (0);
 }
+
 void	*ft_memset(void *b, int c, size_t len)
 {
 	size_t	i;
@@ -62,6 +64,7 @@ void	*ft_memset(void *b, int c, size_t len)
 	}
 	return (b);
 }
+
 void	ft_bzero(void *s, size_t n)
 {
 	ft_memset(s, 0, n);

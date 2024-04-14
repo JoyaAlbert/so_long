@@ -52,7 +52,7 @@ int	nameformat(char *map, int argc)
 	return (1);
 }
 
-char	**mapchecker(int length, char *map_array, char **mapcpy)
+char	**mapchecker(int length, char *map_array, t_reso *reso)
 {
 	char	**map;
 	int		width;
@@ -71,7 +71,7 @@ char	**mapchecker(int length, char *map_array, char **mapcpy)
 		matrix_free(map, length);
 		return (NULL);
 	}
-	if (player(map, mapcpy) == -1)
+	if (player(map, reso) == -1)
 	{
 		printf("NOT SOLVABLE\n");
 		matrix_free(map, length);

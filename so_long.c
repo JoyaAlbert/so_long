@@ -42,11 +42,9 @@ void	data_taking(t_list *a, char *map_array, char **map)
 	a->mv_l = 0;
 	e_pos(a);
 }
-
-int	errors_parsing(char **argv, int argc, t_list *a)
+int	errors_parsing(char **argv, int argc, t_list *a, t_reso *reso)
 {
 	char	**map;
-	char	**mapcpy;
 	char	*map_array;
 	int		length;
 
@@ -56,16 +54,16 @@ int	errors_parsing(char **argv, int argc, t_list *a)
 	if (map_array == NULL)
 		return (0);
 	length = matrixlength(map_array);
-	mapcpy = ft_split(map_array, '\n');
-	map = mapchecker(length, map_array, mapcpy);
+	reso->mapcpy = ft_split(map_array, '\n');
+	map = mapchecker(length, map_array, reso);
 	if (map == NULL)
 	{
-		matrix_free(mapcpy, length);
+		matrix_free(reso->mapcpy, length);
 		free(map_array);
 		return (0);
 	}
 	data_taking(a, map_array, map);
-	matrix_free(mapcpy, length);
+	matrix_free(reso->mapcpy, length);
 	free(map_array);
 	return (1);
 }
@@ -79,12 +77,16 @@ void	ft_frees(t_list *a)
 int	main(int argc, char **argv)
 {
 	t_list	*a;
+	t_reso	*reso;
 
 	a = ft_calloc(1, sizeof(t_list));
 	if (!a)
 		return (0);
+	reso = ft_calloc(1, sizeof(t_list));
+	if (!reso)
+		return (0);
 	atexit(myleaks);
-	if (errors_parsing(argv, argc, a) == 0)
+	if (errors_parsing(argv, argc, a, reso) == 0)
 		return (0);
 	mlx_start(a);
 	return (0);

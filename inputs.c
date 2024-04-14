@@ -102,7 +102,7 @@ void	mv_right(t_list *a)
 int	inputs(int input, t_list *a)
 {
 	p_pos(a);
-	if (input == 48)
+	if (input == 65307)
 	{
 		mlx_destroy_window(a->mlx, a->win);
 		exit (0);

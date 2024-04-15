@@ -13,7 +13,7 @@ void	textureinits(t_list *a)
 	a->escape = mlx_xpm_file_to_image(a->mlx, "textures/e.xpm", &w, &h);
 	a->escape_p = mlx_xpm_file_to_image(a->mlx, "textures/e_p.xpm", &w, &h);
 	a->wall = mlx_xpm_file_to_image(a->mlx, "textures/1.xpm", &w, &h);
-	a->player = mlx_xpm_file_to_image(a->mlx, "textures/down.xpm", &w, &h);
+	a->player = mlx_xpm_file_to_image(a->mlx, "textures/p1.xpm", &w, &h);
 	a->player_u = mlx_xpm_file_to_image(a->mlx, "textures/up.xpm", &w, &h);
 	a->player_r = mlx_xpm_file_to_image(a->mlx, "textures/right.xpm", &w, &h);
 	a->player_l = mlx_xpm_file_to_image(a->mlx, "textures/left.xpm", &w, &h);

@@ -34,13 +34,13 @@ typedef struct data_list
 	void	*wall;
 	void	*col;
 	void	*escape;
-	void	*escape_p;
 	void	*player;
 	void	*player_u;
 	void	*player_r;
 	void	*player_l;
 	void	*grnd;
-	void	*banner;
+	void	*escape_cp;
+	void	*escape_c;
 }	t_list;
 
 typedef struct resolution_data

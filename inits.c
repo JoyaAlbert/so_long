@@ -11,12 +11,13 @@ void	textureinits(t_list *a)
 	a->grnd = mlx_xpm_file_to_image(a->mlx, "textures/0.xpm", &w, &h);
 	a->col = mlx_xpm_file_to_image(a->mlx, "textures/c.xpm", &w, &h);
 	a->escape = mlx_xpm_file_to_image(a->mlx, "textures/e.xpm", &w, &h);
-	a->escape_p = mlx_xpm_file_to_image(a->mlx, "textures/e_p.xpm", &w, &h);
 	a->wall = mlx_xpm_file_to_image(a->mlx, "textures/1.xpm", &w, &h);
 	a->player = mlx_xpm_file_to_image(a->mlx, "textures/p1.xpm", &w, &h);
 	a->player_u = mlx_xpm_file_to_image(a->mlx, "textures/up.xpm", &w, &h);
 	a->player_r = mlx_xpm_file_to_image(a->mlx, "textures/right.xpm", &w, &h);
 	a->player_l = mlx_xpm_file_to_image(a->mlx, "textures/left.xpm", &w, &h);
+	a->escape_cp = mlx_xpm_file_to_image(a->mlx, "textures/ecp.xpm", &w, &h);
+	a->escape_c = mlx_xpm_file_to_image(a->mlx, "textures/ec.xpm", &w, &h);
 }
 
 void	player_hor(int x, int y, t_list *a)
@@ -50,9 +51,11 @@ void	putinpos(char c, int i, int j, t_list *a)
 		mlx_put_image_to_window (a->mlx, a->win, a->wall, x, y);
 	else if (c == 'E')
 	{
-		if (a->e_x == a->p_x && a->e_y == a->p_y)
-			mlx_put_image_to_window (a->mlx, a->win, a->escape_p, x, y);
-		else
+		if (a->e_x == a->p_x && a->e_y == a->p_y && a->col_obt != a->total_col)
+			mlx_put_image_to_window (a->mlx, a->win, a->escape_cp, x, y);
+		else if(a->col_obt != a->total_col)
+			mlx_put_image_to_window (a->mlx, a->win, a->escape_c, x, y);
+		else if(a->col_obt == a->total_col)
 			mlx_put_image_to_window (a->mlx, a->win, a->escape, x, y);
 	}
 	else if (c == 'P')

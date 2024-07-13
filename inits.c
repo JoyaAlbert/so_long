@@ -1,23 +1,23 @@
 #include "so_long.h"
 #include "mlx/mlx.h"
 
-void	textureinits(t_list *a)
+void	textureinits(t_list *d)
 {
 	int	w;
 	int	h;
 
 	w = 50;
 	h = 50;
-	a->grnd = mlx_xpm_file_to_image(a->mlx, "textures/0.xpm", &w, &h);
-	a->col = mlx_xpm_file_to_image(a->mlx, "textures/c.xpm", &w, &h);
-	a->escape = mlx_xpm_file_to_image(a->mlx, "textures/e.xpm", &w, &h);
-	a->wall = mlx_xpm_file_to_image(a->mlx, "textures/1.xpm", &w, &h);
-	a->player = mlx_xpm_file_to_image(a->mlx, "textures/p1.xpm", &w, &h);
-	a->player_u = mlx_xpm_file_to_image(a->mlx, "textures/up.xpm", &w, &h);
-	a->player_r = mlx_xpm_file_to_image(a->mlx, "textures/right.xpm", &w, &h);
-	a->player_l = mlx_xpm_file_to_image(a->mlx, "textures/left.xpm", &w, &h);
-	a->escape_cp = mlx_xpm_file_to_image(a->mlx, "textures/ecp.xpm", &w, &h);
-	a->escape_c = mlx_xpm_file_to_image(a->mlx, "textures/ec.xpm", &w, &h);
+	d->grnd = mlx_xpm_file_to_image(d->mlx, "textures/0.xpm", &w, &h);
+	d->col = mlx_xpm_file_to_image(d->mlx, "textures/c.xpm", &w, &h);
+	d->escape = mlx_xpm_file_to_image(d->mlx, "textures/e.xpm", &w, &h);
+	d->wall = mlx_xpm_file_to_image(d->mlx, "textures/1.xpm", &w, &h);
+	d->player = mlx_xpm_file_to_image(d->mlx, "textures/p1.xpm", &w, &h);
+	d->player_u = mlx_xpm_file_to_image(d->mlx, "textures/up.xpm", &w, &h);
+	d->player_r = mlx_xpm_file_to_image(d->mlx, "textures/right.xpm", &w, &h);
+	d->player_l = mlx_xpm_file_to_image(d->mlx, "textures/left.xpm", &w, &h);
+	d->escape_cp = mlx_xpm_file_to_image(d->mlx, "textures/ecp.xpm", &w, &h);
+	d->escape_c = mlx_xpm_file_to_image(d->mlx, "textures/ec.xpm", &w, &h);
 }
 
 void	player_hor(int x, int y, t_list *a)

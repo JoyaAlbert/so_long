@@ -2,10 +2,6 @@
 #include "mlx/mlx.h"
 
 // to compile cc *.c printf/*.c gnl/*.c mlx/libmlx.a -lX11 -lXext
-void	myleaks(void)
-{
-	system("leaks -q so_long");
-}
 
 int	mlx_start(t_list *a)
 {
@@ -85,7 +81,6 @@ int	main(int argc, char **argv)
 	reso = ft_calloc(1, sizeof(t_list));
 	if (!reso)
 		return (0);
-	atexit(myleaks);
 	if (errors_parsing(argv, argc, a, reso) == 0)
 		return (0);
 	mlx_start(a);

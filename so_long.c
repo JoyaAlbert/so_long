@@ -82,10 +82,16 @@ int	main(int argc, char **argv)
 
 	game_data = ft_calloc(1, sizeof(t_list));
 	if (!game_data)
+	{
+		ft_printf("Memory problems\n");
 		return (0);
+	}
 	reso = ft_calloc(1, sizeof(t_list));
 	if (!reso)
+	{
+		ft_printf("Memory problems\n");
 		return (0);
+	}
 	if (errors_parsing(argv, argc, game_data, reso) == 0)
 		return (0);
 	mlx_start(game_data);

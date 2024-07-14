@@ -1,34 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   checker_aux.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ajoya-pi <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/07/14 14:52:25 by ajoya-pi          #+#    #+#             */
+/*   Updated: 2024/07/14 14:52:28 by ajoya-pi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
-/*
-int	blockedelement(char **map, int i, int j)
-{
-	int	counter;
-	int ncounter;
 
-	ncounter = 0;
-	counter = 0;
-	if(map[i][j + 1] == '1')
-		counter++;
-	if(map[i][j - 1] == '1')
-		counter++;
-	if(map[i - 1][j] == '1')
-		counter++;
-	if(map[i + 1][j] == '1')
-		counter++;
-	if(map[i][j + 1] == 'x')
-		ncounter++;
-	if(map[i][j - 1] == 'x')
-		ncounter++;
-	if(map[i - 1][j] == 'x')
-		ncounter++;
-	if(map[i + 1][j] == 'x')
-		ncounter++;
-	if (counter == 3 )
-		return (-1);
-	return (0);
-}*/
-
-int	elementCounter(char **map, char element)
+int	elementcounter(char **map, char element)
 {
 	int	i;
 	int	j;
@@ -52,22 +36,22 @@ int	elementCounter(char **map, char element)
 
 int	elementchecker(char **map)
 {
-	if (elementCounter(map, 'P') != 1)
+	if (elementcounter(map, 'P') != 1)
 	{
 		ft_printf("MUST BE JUST ONE P\n");
 		return (-1);
 	}
-	if (elementCounter(map, 'E') != 1)
+	if (elementcounter(map, 'E') != 1)
 	{
 		ft_printf("MUST BE JUST ONE E\n");
 		return (-1);
 	}
-	if (elementCounter(map, 'C') == 0)
+	if (elementcounter(map, 'C') == 0)
 	{
 		ft_printf("MUST BE AT LEAST ONE C\n");
 		return (-1);
 	}
-	if (elementCounter(map, '0') == 0)
+	if (elementcounter(map, '0') == 0)
 	{
 		ft_printf("MUST BE JUST ONE 0\n");
 		return (-1);
@@ -75,7 +59,7 @@ int	elementchecker(char **map)
 	return (0);
 }
 
-int elementsTofind(char **map)
+int	elementstofind(char **map)
 {
 	int	i;
 	int	j;

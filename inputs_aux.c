@@ -1,5 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   inputs_aux.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ajoya-pi <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/07/14 14:51:17 by ajoya-pi          #+#    #+#             */
+/*   Updated: 2024/07/14 14:51:19 by ajoya-pi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
-#include "mlx/mlx.h"
 
 int	exitcheck(t_list *a)
 {
@@ -51,4 +62,11 @@ void	e_pos(t_list *a)
 		}
 		i++;
 	}
+}
+
+int	close_window(t_list *data)
+{
+	mlx_destroy_window(data->mlx, data->win);
+	exit(0);
+	return (0);
 }

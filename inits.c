@@ -1,5 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   inits.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ajoya-pi <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/07/14 14:51:46 by ajoya-pi          #+#    #+#             */
+/*   Updated: 2024/07/14 14:51:48 by ajoya-pi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
-#include "mlx/mlx.h"
 
 void	textureinits(t_list *d)
 {
@@ -53,9 +64,9 @@ void	putinpos(char c, int i, int j, t_list *a)
 	{
 		if (a->e_x == a->p_x && a->e_y == a->p_y && a->col_obt != a->total_col)
 			mlx_put_image_to_window (a->mlx, a->win, a->escape_cp, x, y);
-		else if(a->col_obt != a->total_col)
+		else if (a->col_obt != a->total_col)
 			mlx_put_image_to_window (a->mlx, a->win, a->escape_c, x, y);
-		else if(a->col_obt == a->total_col)
+		else if (a->col_obt == a->total_col)
 			mlx_put_image_to_window (a->mlx, a->win, a->escape, x, y);
 	}
 	else if (c == 'P')

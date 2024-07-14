@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   so_long.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ajoya-pi <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/07/14 14:46:42 by ajoya-pi          #+#    #+#             */
+/*   Updated: 2024/07/14 14:46:45 by ajoya-pi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
 # include "gnl/get_next_line.h"
 # include "printf/ft_printf.h"
-//# include "mlx/mlx.h"
+# include "mlx/mlx.h"
 # include <stdio.h>
 # include <unistd.h>
 # include <sys/wait.h>
@@ -54,11 +66,11 @@ int		nameformat(char *map, int argc);
 char	**mapchecker(int length, char *map_array, t_reso *reso);
 int		elementCounter(char **map, char element);
 int		elementchecker(char **map);
-int		solvableCheck(char	**map, int length, int width);
+int		solvablecheck(char	**map, int length, int width);
 int		strangechar(char **map);
 int		possibleWay(char **map, char **mapcpy);
 char	*get_map(char *map_name);
-int		elementsTofind(char **map);
+int		elementstofind(char **map);
 int		player(char **map, t_reso *reso);
 //matrix
 int		matrixwidth(char *map_array);
@@ -74,16 +86,15 @@ int		left(int i, int j, int a, t_reso *reso);
 int		up(int i, int j, int a, t_reso *reso);
 int		down(int i, int j, int a, t_reso *reso);
 int		lastcheck(int i, int j, int a, t_reso *res);
-void	printm(char	**a);
-//GRAFICOOOOS
 
+//GRAFICOOOOS
 void	textureinits(t_list *a);
 void	putimgs(t_list *a);
 
 //logicaa
 int		inputs(int inputs, t_list *a);
-void	ft_frees(t_list *a);
 void	e_pos(t_list *a);
 void	p_pos(t_list *a);
 int		exitcheck(t_list *a);
+int		close_window(t_list *data);
 #endif

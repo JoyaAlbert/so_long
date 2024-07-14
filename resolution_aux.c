@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   resolution_aux.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ajoya-pi <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/07/14 14:48:27 by ajoya-pi          #+#    #+#             */
+/*   Updated: 2024/07/14 14:48:30 by ajoya-pi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
 
 int	left(int i, int j, int a, t_reso *reso)
@@ -20,7 +32,6 @@ int	left(int i, int j, int a, t_reso *reso)
 			reso->mapcpy[a][j] = 'x';
 			a++;
 		}
-		printm(reso->mapcpy);
 		j--;
 	}
 	return (reso->counter);
@@ -46,7 +57,6 @@ int	right(int i, int j, int a, t_reso *reso)
 			reso->mapcpy[a][j] = 'x';
 			a++;
 		}
-		printm(reso->mapcpy);
 		j++;
 	}
 	return (reso->counter);
@@ -89,8 +99,10 @@ int	down(int i, int j, int a, t_reso *reso)
 
 int	lastcheck(int i, int j, int a, t_reso *re)
 {
+	i = 0;
 	while (re->mapcpy[i])
 	{
+		j = 0;
 		while (re->mapcpy[i][j] != '\0')
 		{
 			if (re->mapcpy[i][j] == 'x' &&
@@ -103,8 +115,7 @@ int	lastcheck(int i, int j, int a, t_reso *re)
 				(re->mapcpy[i - 1][j] != '1' && re->mapcpy[i - 1][j] != 'x'))
 				re->counter = up(i, j, a, re);
 			if (re->mapcpy[i][j] == 'x' &&
-				(re->mapcpy[i + 1][j + 1] != '1'
-				&& re->mapcpy[i + 1][j] != 'x'))
+				(re->mapcpy[i + 1][j] != '1' && re->mapcpy[i + 1][j] != 'x'))
 				re->counter = down(i, j, a, re);
 			j++;
 		}

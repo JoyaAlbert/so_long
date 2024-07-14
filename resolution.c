@@ -1,16 +1,42 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   resolution.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ajoya-pi <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/07/14 14:47:46 by ajoya-pi          #+#    #+#             */
+/*   Updated: 2024/07/14 14:47:50 by ajoya-pi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
 
-void	printm(char **a)
+int	lastcall(int i, int j, t_reso *re)
 {
-	int	i;
-
 	i = 0;
-	while (a[i] != NULL)
+	while (re->mapcpy[i])
 	{
-		ft_printf("%s\n", a[i]);
+		j = 0;
+		while (re->mapcpy[i][j] != '\0')
+		{
+			if (re->mapcpy[i][j] == 'x' &&
+				(re->mapcpy[i][j + 1] != '1' && re->mapcpy[i][j + 1] != 'x'))
+				return (1);
+			if (re->mapcpy[i][j] == 'x' &&
+				(re->mapcpy[i][j - 1] != '1' && re->mapcpy[i][j - 1] != 'x'))
+				return (1);
+			if (re->mapcpy[i][j] == 'x' &&
+				(re->mapcpy[i - 1][j] != '1' && re->mapcpy[i - 1][j] != 'x'))
+				return (1);
+			if (re->mapcpy[i][j] == 'x' &&
+				(re->mapcpy[i + 1][j] != '1' && re->mapcpy[i + 1][j] != 'x'))
+				return (1);
+			j++;
+		}
 		i++;
 	}
-	ft_printf("\n");
+	return (0);
 }
 
 int	resolution(t_reso *reso, char **map, int i, int j)
@@ -21,10 +47,9 @@ int	resolution(t_reso *reso, char **map, int i, int j)
 	a = i;
 	reso->counter = up(i, j, a, reso);
 	reso->counter = down(i, j, a, reso);
-	i = 0;
-	reso->counter = lastcheck(i, j, a, reso);
-	printf("%d\n", reso->counter);
-	if (reso->counter != elementsTofind(map))
+	while (lastcall(i, j, reso) != 0)
+		reso->counter = lastcheck(i, j, a, reso);
+	if (reso->counter != elementstofind(map))
 		return (-1);
 	return (0);
 }
@@ -36,8 +61,6 @@ int	player(char **map, t_reso *reso)
 
 	i = 0;
 	j = 0;
-	printm(reso->mapcpy);
-	i = 0;
 	while (map[i] != NULL)
 	{
 		j = 0;

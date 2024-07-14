@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   maps.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ajoya-pi <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/07/14 14:49:39 by ajoya-pi          #+#    #+#             */
+/*   Updated: 2024/07/14 14:49:41 by ajoya-pi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
 
 char	*get_map(char *map_name)
@@ -66,22 +78,21 @@ char	**mapchecker(int length, char *map_array, t_reso *reso)
 		matrix_free(map, length);
 		return (NULL);
 	}
-	if (solvableCheck(map, length, width - 2) == -1)
+	if (solvablecheck(map, length, width - 2) == -1)
 	{
 		matrix_free(map, length);
 		return (NULL);
 	}
 	if (player(map, reso) == -1)
 	{
-		printf("NOT SOLVABLE\n");
+		ft_printf("NOT SOLVABLE\n");
 		matrix_free(map, length);
 		return (NULL);
 	}
-	ft_printf("SOLVABLE MAP\n");
 	return (map);
 }
 
-int	solvableCheck(char	**map, int length, int width)
+int	solvablecheck(char	**map, int length, int width)
 {
 	int	i;
 

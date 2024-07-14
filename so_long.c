@@ -1,7 +1,16 @@
-#include "so_long.h"
-#include "mlx/mlx.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   so_long.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ajoya-pi <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/07/14 14:47:05 by ajoya-pi          #+#    #+#             */
+/*   Updated: 2024/07/14 14:47:11 by ajoya-pi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-// to compile cc *.c printf/*.c gnl/*.c mlx/libmlx.a -lX11 -lXext
+#include "so_long.h"
 
 int	mlx_start(t_list *game_data)
 {
@@ -14,6 +23,7 @@ int	mlx_start(t_list *game_data)
 	textureinits(game_data);
 	game_data->win = mlx_new_window(game_data->mlx, x, y, "So Long");
 	putimgs(game_data);
+	mlx_hook(game_data->win, 33, 0, close_window, game_data);
 	mlx_key_hook(game_data->win, inputs, game_data);
 	mlx_loop(game_data->mlx);
 	return (0);
@@ -27,7 +37,7 @@ void	data_taking(t_list *game_data, char *map_array, char **map)
 	game_data->w = matrixwidth(map_array);
 	game_data->col_obt = 0;
 	game_data->moves = 0;
-	game_data->total_col = elementsTofind(game_data->map) - 1;
+	game_data->total_col = elementstofind(game_data->map) - 1;
 	game_data->fixed_d = 0;
 	game_data->mv_d = 0;
 	game_data->fixed_u = 0;
@@ -38,6 +48,7 @@ void	data_taking(t_list *game_data, char *map_array, char **map)
 	game_data->mv_l = 0;
 	e_pos(game_data);
 }
+
 int	errors_parsing(char **argv, int argc, t_list *game_data, t_reso *reso)
 {
 	char	**map;
@@ -62,12 +73,6 @@ int	errors_parsing(char **argv, int argc, t_list *game_data, t_reso *reso)
 	matrix_free(reso->mapcpy, length);
 	free(map_array);
 	return (1);
-}
-
-void	ft_frees(t_list *a)
-{
-	matrix_free(a->map, a->l -1);
-	free(a->map_array);
 }
 
 int	main(int argc, char **argv)

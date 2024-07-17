@@ -126,4 +126,3 @@ int	inputs(int input, t_list *a)
 		mv_right(a);
 	return (1);
 }
-

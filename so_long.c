@@ -19,7 +19,7 @@ int	mlx_start(t_list *game_data)
 
 	x = (game_data->w -1) * 50;
 	y = (game_data->l) * 50;
-	if(x >= 3840 || y>= 2160)
+	if (x >= 3840 || y >= 2160)
 	{
 		ft_printf("Error\nTo big for the screen\n");
 		return (0);

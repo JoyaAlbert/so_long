@@ -87,12 +87,12 @@ int		up(int i, int j, int a, t_reso *reso);
 int		down(int i, int j, int a, t_reso *reso);
 int		lastcheck(int i, int j, int a, t_reso *res);
 
-//GRAFICOOOOS
+//IMGS
 void	textureinits(t_list *a);
 void	putimgs(t_list *a);
-int	inputsf();
 
-//logicaa
+//logic
+int		inputsf(void);
 int		inputs(int inputs, t_list *a);
 void	e_pos(t_list *a);
 void	p_pos(t_list *a);

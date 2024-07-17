@@ -77,7 +77,7 @@ void	*ft_calloc(size_t count, size_t size)
 	return (p);
 }
 
-int	inputsf()
+int	inputsf(void)
 {
 	exit(0);
 	return (0);

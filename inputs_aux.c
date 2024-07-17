@@ -15,7 +15,10 @@
 int	exitcheck(t_list *a)
 {
 	if (a->total_col == a->col_obt)
+	{
+		putimgs(a);
 		return (1);
+	}
 	ft_printf("You need %d more colectionables\n", a->total_col - a->col_obt);
 	return (0);
 }

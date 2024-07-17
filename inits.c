@@ -62,7 +62,7 @@ void	putinpos(char c, int i, int j, t_list *a)
 		mlx_put_image_to_window (a->mlx, a->win, a->wall, x, y);
 	else if (c == 'E')
 	{
-		if (a->e_x == a->p_x && a->e_y == a->p_y && a->col_obt != a->total_col)
+		if (a->e_x == a->p_x && a->e_y == a->p_y)
 			mlx_put_image_to_window (a->mlx, a->win, a->escape_cp, x, y);
 		else if (a->col_obt != a->total_col)
 			mlx_put_image_to_window (a->mlx, a->win, a->escape_c, x, y);

@@ -21,7 +21,7 @@ char	*get_map(char *map_name)
 	fd = open(map_name, O_RDONLY);
 	if (fd == -1)
 	{
-		ft_printf("Error opening the file\n");
+		ft_printf("Error\nError opening the file\n");
 		return (NULL);
 	}
 	map_array = malloc(1);
@@ -48,7 +48,7 @@ int	nameformat(char *map, int argc)
 	i = 0;
 	if (argc != 2)
 	{
-		ft_printf("To play -> ./so_long 'map file'\n");
+		ft_printf("Error\nTo play -> ./so_long 'map file'\n");
 		return (-1);
 	}
 	while (i <= 3)
@@ -57,7 +57,7 @@ int	nameformat(char *map, int argc)
 			i++;
 		else
 		{
-			ft_printf("must be a .ber file\n");
+			ft_printf("Error\nmust be a .ber file\n");
 			return (-1);
 		}
 	}
@@ -85,7 +85,7 @@ char	**mapchecker(int length, char *map_array, t_reso *reso)
 	}
 	if (player(map, reso) == -1)
 	{
-		ft_printf("NOT SOLVABLE\n");
+		ft_printf("Error\nNOT SOLVABLE\n");
 		matrix_free(map, length);
 		return (NULL);
 	}
@@ -101,7 +101,7 @@ int	solvablecheck(char	**map, int length, int width)
 	{
 		if (map[i][0] != '1' || map[i][width] != '1')
 		{
-			ft_printf("NOT CLOSED BY WALLS\n");
+			ft_printf("Error\nNOT CLOSED BY WALLS\n");
 			return (-1);
 		}
 		i++;
@@ -111,7 +111,7 @@ int	solvablecheck(char	**map, int length, int width)
 	{
 		if (map[0][i] != '1' || map[length -1][i] != '1')
 		{
-			ft_printf("NOT CLOSED BY WALLS\n");
+			ft_printf("Error\nNOT CLOSED BY WALLS\n");
 			return (-1);
 		}
 		i++;
@@ -135,7 +135,7 @@ int	strangechar(char **map)
 			if (map[i][j] != '0' && map[i][j] != '1' && map[i][j] != 'P'
 				&& map[i][j] != 'E' && map[i][j] != 'C')
 			{
-				ft_printf("STRANGE CHARACTER\n");
+				ft_printf("Error\nSTRANGE CHARACTER\n");
 				return (-1);
 			}
 			j++;

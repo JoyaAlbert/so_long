@@ -90,6 +90,7 @@ int		lastcheck(int i, int j, int a, t_reso *res);
 //GRAFICOOOOS
 void	textureinits(t_list *a);
 void	putimgs(t_list *a);
+int	inputsf();
 
 //logicaa
 int		inputs(int inputs, t_list *a);

@@ -27,7 +27,7 @@ void	mv_up(t_list *a)
 		if (a->map[a->p_y][a->p_x] == 'E' && exitcheck(a) != 0)
 		{
 			ft_printf("WELL DONE\n");
-			exit(0);
+			mlx_key_hook(a->win, inputsf, a);
 		}
 		if (a->map[a->p_y][a->p_x] != 'E')
 			a->map[a->p_y][a->p_x] = 'P';
@@ -51,7 +51,7 @@ void	mv_down(t_list *a)
 		if (a->map[a->p_y][a->p_x] == 'E' && exitcheck(a) != 0)
 		{
 			ft_printf("WELL DONE\n");
-			exit(0);
+			mlx_key_hook(a->win, inputsf, a);
 		}
 		if (a->map[a->p_y][a->p_x] != 'E')
 			a->map[a->p_y][a->p_x] = 'P';
@@ -75,7 +75,7 @@ void	mv_left(t_list *a)
 		if (a->map[a->p_y][a->p_x] == 'E' && exitcheck(a) != 0)
 		{
 			ft_printf("WELL DONE\n");
-			exit(0);
+			mlx_key_hook(a->win, inputsf, a);
 		}
 		if (a->map[a->p_y][a->p_x] != 'E')
 			a->map[a->p_y][a->p_x] = 'P';
@@ -99,7 +99,7 @@ void	mv_right(t_list *a)
 		if (a->map[a->p_y][a->p_x] == 'E' && exitcheck(a) != 0)
 		{
 			ft_printf("WELL DONE\n");
-			exit(0);
+			mlx_key_hook(a->win, inputsf, a);
 		}
 		if (a->map[a->p_y][a->p_x] != 'E')
 			a->map[a->p_y][a->p_x] = 'P';
@@ -126,3 +126,4 @@ int	inputs(int input, t_list *a)
 		mv_right(a);
 	return (1);
 }
+

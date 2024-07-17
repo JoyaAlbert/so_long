@@ -33,7 +33,7 @@ int	matrixwidth(char *map)
 		}
 		if (k != size)
 		{
-			ft_printf("NOT SAME NUMBER OF ELEMENTTS FOR LINE\n");
+			ft_printf("Error\nNOT SAME NUMBER OF ELEMENTTS FOR LINE\n");
 			return (-1);
 		}
 	}
@@ -75,4 +75,10 @@ void	*ft_calloc(size_t count, size_t size)
 		return (NULL);
 	ft_bzero(p, count * size);
 	return (p);
+}
+
+int	inputsf()
+{
+	exit(0);
+	return (0);
 }

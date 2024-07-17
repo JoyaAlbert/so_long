@@ -38,22 +38,22 @@ int	elementchecker(char **map)
 {
 	if (elementcounter(map, 'P') != 1)
 	{
-		ft_printf("MUST BE JUST ONE P\n");
+		ft_printf("Error\nMUST BE JUST ONE P\n");
 		return (-1);
 	}
 	if (elementcounter(map, 'E') != 1)
 	{
-		ft_printf("MUST BE JUST ONE E\n");
+		ft_printf("Error\nMUST BE JUST ONE E\n");
 		return (-1);
 	}
 	if (elementcounter(map, 'C') == 0)
 	{
-		ft_printf("MUST BE AT LEAST ONE C\n");
+		ft_printf("Error\nMUST BE AT LEAST ONE C\n");
 		return (-1);
 	}
 	if (elementcounter(map, '0') == 0)
 	{
-		ft_printf("MUST BE JUST ONE 0\n");
+		ft_printf("Error\nMUST BE JUST ONE 0\n");
 		return (-1);
 	}
 	return (0);

@@ -19,6 +19,11 @@ int	mlx_start(t_list *game_data)
 
 	x = (game_data->w -1) * 50;
 	y = (game_data->l) * 50;
+	if(x >= 3840 || y>= 2160)
+	{
+		ft_printf("Error\nTo big for the screen\n");
+		return (0);
+	}
 	game_data->mlx = mlx_init();
 	textureinits(game_data);
 	game_data->win = mlx_new_window(game_data->mlx, x, y, "So Long");
@@ -83,13 +88,13 @@ int	main(int argc, char **argv)
 	game_data = ft_calloc(1, sizeof(t_list));
 	if (!game_data)
 	{
-		ft_printf("Memory problems\n");
+		ft_printf("Error\nMemory problems\n");
 		return (0);
 	}
 	reso = ft_calloc(1, sizeof(t_list));
 	if (!reso)
 	{
-		ft_printf("Memory problems\n");
+		ft_printf("Error\nMemory problems\n");
 		return (0);
 	}
 	if (errors_parsing(argv, argc, game_data, reso) == 0)
